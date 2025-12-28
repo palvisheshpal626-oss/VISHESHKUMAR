@@ -18,65 +18,78 @@
 <p align="center">
   <img src="https://komarev.com/ghpvc/?username=palvisheshpal626-oss&label=POWER+LEVEL&color=red&style=for-the-badge" />
 </p>
+<h1 align="center">Vishesh Kumar</h1>
+<h3 align="center">Android Developer • Game Developer • Trader Mindset</h3>
 
----
-
-## 🧠 WHO AM I (ANIME ARC)
-🎓 **BCA Student**  
-💻 **Android & Game Developer**  
-📊 **Trader with Discipline & Probability Thinking**  
-🧠 Focus on **logic, systems & consistency**  
-⚡ Long-term growth > short-term hype  
-
-> 💀 *Code sharp. Trade smart. Stay dangerous.*
-
----
-
-## ⚔️ SKILLS & ABILITIES
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=androidstudio,kotlin,java,python,firebase,git,github,vscode&perline=9" />
+  <img src="https://komarev.com/ghpvc/?username=palvisheshpal626-oss&style=flat&color=grey" />
 </p>
 
-- ⚡ Android App Architecture  
-- 🎮 Game Logic & Systems  
-- 📈 Trading Psychology & Risk Control  
-- 🔥 Monetization & System Thinking  
-- 🧠 Problem Solving Under Pressure  
+---
+
+## ⚠️ SYSTEM STATUS
+- 🟢 Active
+- 🧠 Focused
+- 📈 Disciplined
+- ⛔ No Gambling Mode
 
 ---
 
-## 🧬 TRADER MINDSET (NO GAMBLING)
-- 📊 Probability > Emotion  
+## 🧠 WHO I AM
+- 🎓 BCA Student  
+- 💻 Android & Game Developer  
+- 📊 Trader mindset built on **probability & risk control**  
+- ⚙️ I build systems — I don’t chase hype  
+
+> *Quiet work. Consistent growth.*
+
+---
+
+## ⚔️ CORE SKILLS
+- Android (Kotlin / Java)
+- Game Logic & State Systems
+- Firebase (Auth, DB)
+- Git & GitHub
+- Problem Solving under pressure
+- Trading psychology (discipline-first)
+
+---
+
+## 🔥 DISCIPLINE > MOTIVATION
 - 🛡️ Risk management first  
-- 🧠 Discipline beats motivation  
+- 🧠 Logic over emotion  
 - ⏳ Patience = power  
 - ❌ No revenge trading  
+- 📊 Systems beat shortcuts  
 
 ---
 
-## 📊 SYSTEM STATUS
+## 📊 GITHUB SIGNAL
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=palvisheshpal626-oss&show_icons=true&theme=dark&hide_border=true" height="200"/>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=palvisheshpal626-oss&layout=compact&theme=dark&hide_border=true" height="200"/>
+  <img src="https://github-readme-stats.vercel.app/api?username=palvisheshpal626-oss&show_icons=true&theme=github_dark&hide_border=true" />
+</p>
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=palvisheshpal626-oss&layout=compact&theme=github_dark&hide_border=true" />
 </p>
 
 ---
 
-## 🔥 DISCIPLINE STREAK
+## 🐍 CONTRIBUTION FLOW
 <p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=palvisheshpal626-oss&theme=dark&hide_border=true" />
+  <img src="https://raw.githubusercontent.com/platane/snk/output/github-contribution-grid-snake.svg" />
 </p>
 
 ---
 
-## 🐍 DARK ANIME CONTRIBUTION SNAKE
-<p align="center">
-  <img src="https://raw.githubusercontent.com/platane/snk/output/github-contribution-grid-snake-dark.svg" />
-</p>
+## 📫 CONTACT
+- 📧 palvisheshpal626@gmail.com  
+- 🌐 https://github.com/palvisheshpal626-oss
 
 ---
 
-## ⚡ POWER LEVEL BARS
+<p align="center"><b>Build quietly. Think clearly. Execute consistently.</b></p>
+
 <p align="center">
   <img src="https://progress-bar.dev/95/?title=FOCUS&color=ff0055" />
   <img src="https://progress-bar.dev/92/?title=DISCIPLINE&color=00f7ff" />
