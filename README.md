@@ -1,86 +1,81 @@
-<!-- ================== CYBER-ANIME GLITCH HEADER ================== -->
+<!-- ================== CYBER HEADER ================== -->
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=transparent&height=300&section=header&text=VISHESH%20KUMAR&fontSize=75&fontColor=00f7ff&animation=fadeIn&desc=DEVELOPER%20⚡%20GAME%20DEV%20⚡%20TRADER%20MINDSET&descSize=26&descAlignY=72" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,100:2c5364&height=260&section=header&text=VISHESH%20KUMAR&fontSize=60&fontColor=ffffff&animation=fadeIn" />
 </p>
 
-<!-- ================== GLITCH TYPING ANIMATION ================== -->
+<!-- ================== TYPING ANIMATION ================== -->
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=34&pause=600&color=FF0055&center=true&vCenter=true&width=1100&lines=⚡+Android+Developer;🎮+Game+Developer;📈+Trader+Mindset;🧠+Risk+Management+Over+Emotion;💀+Build+Systems+Not+Hype" />
-</p>
-
-<!-- ================== STATUS BADGES ================== -->
-<p align="center">
-  <img src="https://img.shields.io/badge/STATUS-ACTIVE-ff0055?style=for-the-badge&labelColor=000000"/>
-  <img src="https://img.shields.io/badge/MODE-DISCIPLINED-00f7ff?style=for-the-badge&labelColor=000000"/>
-  <img src="https://img.shields.io/badge/AURA-DANGEROUS-7f00ff?style=for-the-badge&labelColor=000000"/>
+  <img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=28&pause=700&color=00E6FF&center=true&vCenter=true&width=900&lines=Android+Developer;Game+Developer;Trader+Mindset;Discipline+%3E+Emotion;Build+Systems+Not+Hype" />
 </p>
 
 <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=palvisheshpal626-oss&label=POWER+LEVEL&color=red&style=for-the-badge" />
+  <img src="https://komarev.com/ghpvc/?username=palvisheshpal626-oss&style=flat&color=grey" />
 </p>
 
 ---
 
-## 🧠 WHO AM I (ANIME ARC)
+## 🧠 WHO I AM
 🎓 **BCA Student**  
 💻 **Android & Game Developer**  
-📊 **Trader with Discipline & Probability Thinking**  
-🧠 Focus on **logic, systems & consistency**  
-⚡ Long-term growth > short-term hype  
+📊 **Trader mindset (probability & risk based)**  
+🧠 Focused on **systems, logic & consistency**  
 
-> 💀 *Code sharp. Trade smart. Stay dangerous.*
+> *Quiet work. Long-term thinking.*
 
 ---
 
 ## ⚔️ SKILLS & ABILITIES
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=androidstudio,kotlin,java,python,firebase,git,github,vscode&perline=9" />
+  <img src="https://skillicons.dev/icons?i=androidstudio,kotlin,java,python,firebase,git,github,vscode&perline=8" />
 </p>
 
-- ⚡ Android App Architecture  
-- 🎮 Game Logic & Systems  
-- 📈 Trading Psychology & Risk Control  
-- 🔥 Monetization & System Thinking  
-- 🧠 Problem Solving Under Pressure  
+- Android App Architecture  
+- Game Logic & State Systems  
+- Firebase (Auth / DB)  
+- Git & GitHub  
+- Problem solving under pressure  
+- Trading psychology (discipline first)
 
 ---
 
-## 🧬 TRADER MINDSET (NO GAMBLING)
+## 🧬 TRADER PRINCIPLES
 - 📊 Probability > Emotion  
 - 🛡️ Risk management first  
-- 🧠 Discipline beats motivation  
-- ⏳ Patience = power  
+- 🧠 Discipline > Motivation  
+- ⏳ Patience = Power  
 - ❌ No revenge trading  
 
 ---
 
-## 📊 SYSTEM STATUS
+## ⚠️ SYSTEM STATUS
+🟢 Active  
+🧠 Focused  
+📈 Disciplined  
+⛔ No Gambling Mode  
+
+---
+
+## 📊 GITHUB SIGNAL
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=palvisheshpal626-oss&show_icons=true&theme=dark&hide_border=true" height="200"/>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=palvisheshpal626-oss&layout=compact&theme=dark&hide_border=true" height="200"/>
+  <img src="https://github-readme-stats.vercel.app/api?username=palvisheshpal626-oss&show_icons=true&theme=github_dark&hide_border=true" />
+</p>
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=palvisheshpal626-oss&layout=compact&theme=github_dark&hide_border=true" />
 </p>
 
 ---
 
 ## 🔥 DISCIPLINE STREAK
 <p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=palvisheshpal626-oss&theme=dark&hide_border=true" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=palvisheshpal626-oss&theme=github-dark&hide_border=true" />
 </p>
 
 ---
 
-## 🐍 DARK ANIME CONTRIBUTION SNAKE
+## 🐍 CONTRIBUTION FLOW
 <p align="center">
-  <img src="https://raw.githubusercontent.com/platane/snk/output/github-contribution-grid-snake-dark.svg" />
-</p>
-
----
-
-## ⚡ POWER LEVEL BARS
-<p align="center">
-  <img src="https://progress-bar.dev/95/?title=FOCUS&color=ff0055" />
-  <img src="https://progress-bar.dev/92/?title=DISCIPLINE&color=00f7ff" />
-  <img src="https://progress-bar.dev/90/?title=CONSISTENCY&color=7f00ff" />
+  <img src="https://raw.githubusercontent.com/platane/snk/output/github-contribution-grid-snake.svg" />
 </p>
 
 ---
@@ -88,18 +83,17 @@
 ## ☠️ CONNECT
 <p align="center">
   <a href="mailto:palvisheshpal626@gmail.com">
-    <img src="https://img.shields.io/badge/GMAIL-ff003c?style=for-the-badge&logo=gmail&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white"/>
   </a>
   <a href="https://github.com/palvisheshpal626-oss">
-    <img src="https://img.shields.io/badge/GITHUB-000000?style=for-the-badge&logo=github&logoColor=white"/>
+    <img src="https://img.shields.io/badge/GitHub-000000?style=for-the-badge&logo=github&logoColor=white"/>
   </a>
 </p>
 
 ---
 
-<h1 align="center">⛓️ BUILD LIKE A DEV • THINK LIKE A TRADER • MOVE SILENT ⛓️</h1>
+<p align="center"><b>BUILD QUIETLY • THINK CLEARLY • EXECUTE CONSISTENTLY</b></p>
 
-<!-- ================== DARK FOOTER ================== -->
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=transparent&height=160&section=footer&text=STAY%20DANGEROUS&fontSize=44&fontColor=ff0055" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:2c5364,100:0f2027&height=140&section=footer" />
 </p>
