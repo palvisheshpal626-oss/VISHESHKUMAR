@@ -14,6 +14,21 @@
 </p>
 
 
+<!-- ======= ANIME DARK AURA HEADER ======= -->
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=venom&color=0:000000,50:2b1055,100:000000&height=340&section=header&text=VISHESH%20KUMAR&fontSize=72&fontColor=ff003c&animation=twinkling&stroke=ffffff&strokeWidth=1&desc=DEVELOPER%20⚡%20GAME%20DEV%20⚡%20TRADER%20MINDSET&descSize=24&descAlignY=74" />
+</p>
+
+<!-- ======= ANIME TYPING EFFECT ======= -->
+<p align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=32&pause=700&color=FF003C&center=true&vCenter=true&width=1000&lines=🔥+Android+Developer;🎮+Game+Developer;📊+Trader+Mindset;⚡+Risk+Manager+Not+Gambler;🧠+Build+%7C+Trade+%7C+Dominate" />
+</p>
+
+<!-- ======= POWER LEVEL COUNTER ======= -->
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=palvisheshpal626-oss&label=POWER+LEVEL&color=red&style=for-the-badge" />
+</p>
+
 ---
 
 ## 🧠 WHO AM I (ANIME ARC)
