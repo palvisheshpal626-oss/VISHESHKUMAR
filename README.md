@@ -1,45 +1,90 @@
-<h1 align="center">Hi 👋, I'm Vishesh kumar</h1>
-<h3 align="center">Android App Developer | BCA Student | Tech Enthusiast</h3>
-
----
-
-## 🚀 About Me
-- 🎓 BCA Student
-- 📱 Android App Developer (Kotlin / Java)
-- 🧠 Interested in Coding, Games & App Development
-- 💡 Creative App Ideas
-- 🎯 Goal: Become a Successful Developer & Trader
-
----
-
-## 🛠 Tech Stack
-<p align="left">
-  <img src="https://skillicons.dev/icons?i=androidstudio,kotlin,java,python,firebase,git,github" />
-</p>
-
----
-
-## 🔥 Projects
-- 🎮 **Play & Learn – Code & Brain Games**
-- 🧠 Brain Games App
-- 📊 Coding MCQ & Logic Games
-- 💰 AdMob + Meta Ads Integrated
-
----
-
-## 📊 GitHub Stats
+<!-- ======= ANIME DARK AURA HEADER ======= -->
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=YOUR_USERNAME&show_icons=true&theme=radical" />
+  <img src="https://capsule-render.vercel.app/api?type=venom&color=0:000000,50:2b1055,100:000000&height=340&section=header&text=VISHESH%20KUMAR&fontSize=72&fontColor=ff003c&animation=twinkling&stroke=ffffff&strokeWidth=1&desc=DEVELOPER%20⚡%20GAME%20DEV%20⚡%20TRADER%20MINDSET&descSize=24&descAlignY=74" />
 </p>
 
-![Typing SVG](https://readme-typing-svg.herokuapp.com?lines=Android+Developer;BCA+Student;App+Creator)
+<!-- ======= ANIME TYPING EFFECT ======= -->
+<p align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=32&pause=700&color=FF003C&center=true&vCenter=true&width=1000&lines=🔥+Android+Developer;🎮+Game+Developer;📊+Trader+Mindset;⚡+Risk+Manager+Not+Gambler;🧠+Build+%7C+Trade+%7C+Dominate" />
+</p>
 
-![Profile views](https://komarev.com/ghpvc/?username=VISHESHKUMAR)
-
-
+<!-- ======= POWER LEVEL COUNTER ======= -->
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=palvisheshpal626-oss&label=POWER+LEVEL&color=red&style=for-the-badge" />
+</p>
 
 ---
 
-## 📫 Contact Me
-- 📧 Email: **palvisheshpal626@gmail.com**
-- 🌐 GitHub: https://github.com/VISHESHKUMAR
+## 🧠 WHO AM I (ANIME ARC)
+🎓 **BCA Student**  
+💻 **Android & Game Developer**  
+📊 **Trader with Discipline & Risk Control**  
+🧠 Thinks in **logic, probability & systems**  
+⚡ Focused on **long-term growth, not hype**
+
+> 🩸 *Code sharp. Trade smart. Stay dangerous.*
+
+---
+
+## ⚔️ SKILLS & ABILITIES
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=androidstudio,kotlin,java,python,firebase,git,github,vscode&perline=9" />
+</p>
+
+- ⚡ Android App Architecture  
+- 🎮 Game Logic & Systems  
+- 📊 Trading Psychology & Risk Management  
+- 🔥 Ads Monetization Knowledge  
+- 🧠 Problem Solving & Strategy Thinking  
+
+---
+
+## 🧬 TRADER MINDSET
+- 📈 Probability > Emotions  
+- 🛡️ Risk management first  
+- 🧠 Discipline beats motivation  
+- ⏳ Patience is power  
+- 💀 No revenge trading, no overconfidence  
+
+---
+
+## 📊 SYSTEM STATUS
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=palvisheshpal626-oss&show_icons=true&theme=dark&hide_border=true" height="200"/>
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=palvisheshpal626-oss&layout=compact&theme=dark&hide_border=true" height="200"/>
+</p>
+
+---
+
+## 🔥 STREAK • DISCIPLINE MODE
+<p align="center">
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=palvisheshpal626-oss&theme=dark&hide_border=true" />
+</p>
+
+---
+
+## 🐍 DARK ANIME SNAKE
+<p align="center">
+  <img src="https://raw.githubusercontent.com/platane/snk/output/github-contribution-grid-snake-dark.svg" />
+</p>
+
+---
+
+## ☠️ CONNECT
+<p align="center">
+  <a href="mailto:palvisheshpal626@gmail.com">
+    <img src="https://img.shields.io/badge/GMAIL-BLOODRED?style=for-the-badge&logo=gmail&logoColor=white"/>
+  </a>
+  <a href="https://github.com/palvisheshpal626-oss">
+    <img src="https://img.shields.io/badge/GITHUB-DARK?style=for-the-badge&logo=github&logoColor=white"/>
+  </a>
+</p>
+
+---
+
+<h1 align="center">🩸 BUILD LIKE A DEV • THINK LIKE A TRADER • MOVE LIKE A KING 🩸</h1>
+
+<!-- ======= DARK FOOTER ======= -->
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=venom&color=0:000000,50:2b1055,100:000000&height=180&section=footer" />
+</p>
