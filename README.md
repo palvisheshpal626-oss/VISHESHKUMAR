@@ -1,99 +1,72 @@
-<!-- ================== CYBER-ANIME GLITCH HEADER ================== -->
+<!-- ======= ANIME DARK AURA HEADER ======= -->
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=transparent&height=300&section=header&text=VISHESH%20KUMAR&fontSize=75&fontColor=00f7ff&animation=fadeIn&desc=DEVELOPER%20⚡%20GAME%20DEV%20⚡%20TRADER%20MINDSET&descSize=26&descAlignY=72" />
+  <img src="https://capsule-render.vercel.app/api?type=transparent&height=280&section=header&text=VISHESH%20KUMAR&fontSize=72&fontColor=00f7ff&animation=fadeIn&desc=DEV%20⚡%20GAME%20DEV%20⚡%20TRADER%20MINDSET&descSize=26&descAlignY=72" />
 </p>
 
-<!-- ================== GLITCH TYPING ANIMATION ================== -->
 <p align="center">
   <img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=34&pause=600&color=FF0055&center=true&vCenter=true&width=1100&lines=⚡+Android+Developer;🎮+Game+Developer;📈+Trader+Mindset;🧠+Risk+Management+Over+Emotion;💀+Build+Systems+Not+Hype" />
 </p>
 
-<!-- ================== STATUS BADGES ================== -->
 <p align="center">
   <img src="https://img.shields.io/badge/STATUS-ACTIVE-ff0055?style=for-the-badge&labelColor=000000"/>
   <img src="https://img.shields.io/badge/MODE-DISCIPLINED-00f7ff?style=for-the-badge&labelColor=000000"/>
   <img src="https://img.shields.io/badge/AURA-DANGEROUS-7f00ff?style=for-the-badge&labelColor=000000"/>
 </p>
 
+
+---
+
+## 🧠 WHO AM I (ANIME ARC)
+🎓 **BCA Student**  
+💻 **Android & Game Developer**  
+📊 **Trader with Discipline & Risk Control**  
+🧠 Thinks in **logic, probability & systems**  
+⚡ Focused on **long-term growth, not hype**
+
+> 🩸 *Code sharp. Trade smart. Stay dangerous.*
+
+---
+
+## ⚔️ SKILLS & ABILITIES
 <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=palvisheshpal626-oss&label=POWER+LEVEL&color=red&style=for-the-badge" />
-</p>
-<h1 align="center">Vishesh Kumar</h1>
-<h3 align="center">Android Developer • Game Developer • Trader Mindset</h3>
-
-<p align="center">
-  <img src="https://komarev.com/ghpvc/?username=palvisheshpal626-oss&style=flat&color=grey" />
+  <img src="https://skillicons.dev/icons?i=androidstudio,kotlin,java,python,firebase,git,github,vscode&perline=9" />
 </p>
 
----
-
-## ⚠️ SYSTEM STATUS
-- 🟢 Active
-- 🧠 Focused
-- 📈 Disciplined
-- ⛔ No Gambling Mode
+- ⚡ Android App Architecture  
+- 🎮 Game Logic & Systems  
+- 📊 Trading Psychology & Risk Management  
+- 🔥 Ads Monetization Knowledge  
+- 🧠 Problem Solving & Strategy Thinking  
 
 ---
 
-## 🧠 WHO I AM
-- 🎓 BCA Student  
-- 💻 Android & Game Developer  
-- 📊 Trader mindset built on **probability & risk control**  
-- ⚙️ I build systems — I don’t chase hype  
-
-> *Quiet work. Consistent growth.*
-
----
-
-## ⚔️ CORE SKILLS
-- Android (Kotlin / Java)
-- Game Logic & State Systems
-- Firebase (Auth, DB)
-- Git & GitHub
-- Problem Solving under pressure
-- Trading psychology (discipline-first)
-
----
-
-## 🔥 DISCIPLINE > MOTIVATION
+## 🧬 TRADER MINDSET
+- 📈 Probability > Emotions  
 - 🛡️ Risk management first  
-- 🧠 Logic over emotion  
-- ⏳ Patience = power  
-- ❌ No revenge trading  
-- 📊 Systems beat shortcuts  
+- 🧠 Discipline beats motivation  
+- ⏳ Patience is power  
+- 💀 No revenge trading, no overconfidence  
 
 ---
 
-## 📊 GITHUB SIGNAL
+## 📊 SYSTEM STATUS
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=palvisheshpal626-oss&show_icons=true&theme=github_dark&hide_border=true" />
-</p>
-
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=palvisheshpal626-oss&layout=compact&theme=github_dark&hide_border=true" />
+  <img src="https://github-readme-stats.vercel.app/api?username=palvisheshpal626-oss&show_icons=true&theme=dark&hide_border=true" height="200"/>
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=palvisheshpal626-oss&layout=compact&theme=dark&hide_border=true" height="200"/>
 </p>
 
 ---
 
-## 🐍 CONTRIBUTION FLOW
+## 🔥 STREAK • DISCIPLINE MODE
 <p align="center">
-  <img src="https://raw.githubusercontent.com/platane/snk/output/github-contribution-grid-snake.svg" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=palvisheshpal626-oss&theme=dark&hide_border=true" />
 </p>
 
 ---
 
-## 📫 CONTACT
-- 📧 palvisheshpal626@gmail.com  
-- 🌐 https://github.com/palvisheshpal626-oss
-
----
-
-<p align="center"><b>Build quietly. Think clearly. Execute consistently.</b></p>
-
+## 🐍 DARK ANIME SNAKE
 <p align="center">
-  <img src="https://progress-bar.dev/95/?title=FOCUS&color=ff0055" />
-  <img src="https://progress-bar.dev/92/?title=DISCIPLINE&color=00f7ff" />
-  <img src="https://progress-bar.dev/90/?title=CONSISTENCY&color=7f00ff" />
+  <img src="https://raw.githubusercontent.com/platane/snk/output/github-contribution-grid-snake-dark.svg" />
 </p>
 
 ---
@@ -101,18 +74,18 @@
 ## ☠️ CONNECT
 <p align="center">
   <a href="mailto:palvisheshpal626@gmail.com">
-    <img src="https://img.shields.io/badge/GMAIL-ff003c?style=for-the-badge&logo=gmail&logoColor=white"/>
+    <img src="https://img.shields.io/badge/GMAIL-BLOODRED?style=for-the-badge&logo=gmail&logoColor=white"/>
   </a>
   <a href="https://github.com/palvisheshpal626-oss">
-    <img src="https://img.shields.io/badge/GITHUB-000000?style=for-the-badge&logo=github&logoColor=white"/>
+    <img src="https://img.shields.io/badge/GITHUB-DARK?style=for-the-badge&logo=github&logoColor=white"/>
   </a>
 </p>
 
 ---
 
-<h1 align="center">⛓️ BUILD LIKE A DEV • THINK LIKE A TRADER • MOVE SILENT ⛓️</h1>
+<h1 align="center">🩸 BUILD LIKE A DEV • THINK LIKE A TRADER • MOVE LIKE A KING 🩸</h1>
 
-<!-- ================== DARK FOOTER ================== -->
+<!-- ======= DARK FOOTER ======= -->
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=transparent&height=160&section=footer&text=STAY%20DANGEROUS&fontSize=44&fontColor=ff0055" />
+  <img src="https://capsule-render.vercel.app/api?type=venom&color=0:000000,50:2b1055,100:000000&height=180&section=footer" />
 </p>
