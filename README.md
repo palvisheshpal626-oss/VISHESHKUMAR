@@ -51,7 +51,7 @@
 🟢 Active  
 🧠 Focused  
 📈 Disciplined  
-⛔ No Gambling Mode  
+⛔ No Gambling  
 
 ---
 
