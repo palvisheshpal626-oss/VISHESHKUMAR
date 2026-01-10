@@ -16,6 +16,8 @@ import com.codinglearning.app.data.model.MCQQuestion
 import com.codinglearning.app.data.repository.LevelRepository
 import com.codinglearning.app.ui.result.ResultFragment
 import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
@@ -30,6 +32,7 @@ class MCQFragment : Fragment() {
     private var correctAnswersCount = 0
     private var totalCoinsEarned = 0
     private var rewardedAd: RewardedAd? = null
+    private var bannerAdView: AdView? = null
     
     companion object {
         private const val ARG_LEVEL_ID = "level_id"
@@ -64,6 +67,7 @@ class MCQFragment : Fragment() {
         
         loadQuestions()
         loadRewardedAd()
+        loadBannerAd()
         setupViews(view)
         displayQuestion()
     }
@@ -198,6 +202,21 @@ class MCQFragment : Fragment() {
         )
     }
     
+    private fun loadBannerAd() {
+        val adContainer = requireActivity().findViewById<ViewGroup>(R.id.ad_container)
+        adContainer?.removeAllViews()
+        
+        bannerAdView = AdView(requireContext()).apply {
+            adUnitId = "ca-app-pub-3940256099942544/6300978111" // Test banner ad unit
+            setAdSize(AdSize.BANNER)
+        }
+        
+        adContainer?.addView(bannerAdView)
+        
+        val adRequest = AdRequest.Builder().build()
+        bannerAdView?.loadAd(adRequest)
+    }
+    
     private fun showResults() {
         val fragment = ResultFragment.newInstance(
             totalQuestions = questions.size,
@@ -209,5 +228,20 @@ class MCQFragment : Fragment() {
         parentFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
             .commit()
+    }
+    
+    override fun onResume() {
+        super.onResume()
+        bannerAdView?.resume()
+    }
+    
+    override fun onPause() {
+        bannerAdView?.pause()
+        super.onPause()
+    }
+    
+    override fun onDestroy() {
+        bannerAdView?.destroy()
+        super.onDestroy()
     }
 }
