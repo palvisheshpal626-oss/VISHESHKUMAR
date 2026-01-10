@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Colors - Dark Theme -->
+    <color name="primary_dark">#0f2027</color>
+    <color name="primary_dark_end">#2c5364</color>
+    <color name="accent_cyan">#00E6FF</color>
+    <color name="accent_purple">#7B2CBF</color>
+    
+    <!-- Background Colors -->
+    <color name="background_dark">#0A0E27</color>
+    <color name="card_background">#1A1F3A</color>
+    <color name="card_background_light">#252B48</color>
+    
+    <!-- Text Colors -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B0B3C1</color>
+    <color name="text_disabled">#6B6E7B</color>
+    
+    <!-- Status Colors -->
+    <color name="success_green">#4CAF50</color>
+    <color name="error_red">#F44336</color>
+    <color name="warning_yellow">#FFC107</color>
+    
+    <!-- Level States -->
+    <color name="level_locked">#3A3D4A</color>
+    <color name="level_unlocked">#00E6FF</color>
+    <color name="level_completed">#4CAF50</color>
+    
+    <!-- Gradients -->
+    <color name="gradient_start">#6366F1</color>
+    <color name="gradient_end">#8B5CF6</color>
+    
+    <!-- Common -->
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00FFFFFF</color>
+</resources>
