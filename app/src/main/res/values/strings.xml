@@ -1,0 +1,82 @@
+<resources>
+    <!-- App Name -->
+    <string name="app_name">Code Master</string>
+    <string name="app_tagline">Learn Coding Like a Game</string>
+    
+    <!-- Home Screen -->
+    <string name="start_learning">Start Learning</string>
+    <string name="coins">Coins</string>
+    <string name="your_progress">Your Progress</string>
+    
+    <!-- Language Selection -->
+    <string name="choose_language">Choose Your Path</string>
+    <string name="language_python">Python</string>
+    <string name="language_java">Java</string>
+    <string name="language_cpp">C++</string>
+    <string name="language_javascript">JavaScript</string>
+    <string name="language_kotlin">Kotlin</string>
+    
+    <!-- Level Screen -->
+    <string name="levels">Levels</string>
+    <string name="level_number">Level %1$d</string>
+    <string name="level_locked">Locked</string>
+    <string name="level_completed">Completed</string>
+    <string name="skip_level">Skip Level</string>
+    <string name="skip_cost">%1$d coins + Ad</string>
+    
+    <!-- MCQ Screen -->
+    <string name="question_number">Question %1$d of %2$d</string>
+    <string name="submit_answer">Submit</string>
+    <string name="get_hint">Get Hint</string>
+    <string name="hint_cost">Hint: %1$d coins</string>
+    <string name="correct_answer">Correct! +%1$d coins</string>
+    <string name="wrong_answer">Incorrect. Try again!</string>
+    <string name="insufficient_coins">Not enough coins. Watch an ad?</string>
+    
+    <!-- Result Screen -->
+    <string name="results">Results</string>
+    <string name="total_questions">Total Questions: %1$d</string>
+    <string name="correct_answers">Correct Answers: %1$d</string>
+    <string name="accuracy">Accuracy: %1$d%%</string>
+    <string name="coins_earned">Coins Earned: +%1$d</string>
+    <string name="continue_btn">Continue</string>
+    
+    <!-- Try Code Screen -->
+    <string name="try_code">Try This Code</string>
+    <string name="run_code">Run Code</string>
+    <string name="output">Output</string>
+    <string name="must_run_code">You must run the code at least once to continue</string>
+    
+    <!-- Problem Solving -->
+    <string name="problems">Problems</string>
+    <string name="difficulty_easy">Easy</string>
+    <string name="difficulty_medium">Medium</string>
+    <string name="difficulty_hard">Hard</string>
+    <string name="submit_solution">Submit Solution</string>
+    <string name="test_cases_passed">Test Cases Passed: %1$d/%2$d</string>
+    <string name="solution_correct">Solution Correct! +%1$d coins</string>
+    <string name="solution_incorrect">Some test cases failed. Try again!</string>
+    
+    <!-- Video Learning -->
+    <string name="watch_video">Watch Tutorial</string>
+    
+    <!-- Ads -->
+    <string name="loading_ad">Loading ad...</string>
+    <string name="ad_not_ready">Ad not ready yet. Try again in a moment.</string>
+    <string name="watch_ad_for_coins">Watch ad to get coins</string>
+    
+    <!-- General -->
+    <string name="loading">Loading...</string>
+    <string name="error">Error</string>
+    <string name="retry">Retry</string>
+    <string name="next">Next</string>
+    <string name="back">Back</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    
+    <!-- Messages -->
+    <string name="network_error">Network error. Please check your connection.</string>
+    <string name="generic_error">Something went wrong. Please try again.</string>
+    <string name="level_complete">Level Complete!</string>
+    <string name="congratulations">Congratulations!</string>
+</resources>
