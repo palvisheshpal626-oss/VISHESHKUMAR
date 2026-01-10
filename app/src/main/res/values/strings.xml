@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Coding Learning</string>
+    
+    <!-- Home Screen -->
+    <string name="home_title">Coding Learning</string>
+    <string name="home_tagline">Learn Coding Like a Game</string>
+    <string name="start_learning">Start Learning</string>
+    <string name="daily_challenge">Daily Challenge</string>
+    <string name="get_free_coins">Get Free Coins</string>
+    <string name="coins">Coins: %d</string>
+    
+    <!-- Language Selection -->
+    <string name="select_language">Select Programming Language</string>
+    <string name="language_c">C</string>
+    <string name="language_cpp">C++</string>
+    <string name="language_java">Java</string>
+    <string name="language_python">Python</string>
+    
+    <!-- Level Selection -->
+    <string name="select_level">Select Level</string>
+    <string name="level">Level %d</string>
+    <string name="locked">Locked</string>
+    <string name="completed">Completed</string>
+    <string name="skip_level">Skip Level</string>
+    <string name="skip_cost">5 coins + Watch Ad</string>
+    
+    <!-- MCQ Screen -->
+    <string name="question">Question %d of %d</string>
+    <string name="get_hint">Get Hint</string>
+    <string name="hint_cost">2 coins or Watch Ad</string>
+    <string name="next">Next</string>
+    <string name="submit_answer">Submit Answer</string>
+    
+    <!-- Result Screen -->
+    <string name="result_title">Result</string>
+    <string name="total_questions">Total Questions: %d</string>
+    <string name="correct_answers">Correct Answers: %d</string>
+    <string name="accuracy">Accuracy: %.1f%%</string>
+    <string name="coins_earned">Coins Earned: %d</string>
+    <string name="continue_btn">Continue</string>
+    
+    <!-- Try Code Screen -->
+    <string name="try_code_title">Try Code</string>
+    <string name="run_code">Run Code</string>
+    <string name="output">Output:</string>
+    <string name="example_code">Example Code</string>
+    
+    <!-- Compiler Screen -->
+    <string name="compiler_title">Compiler</string>
+    <string name="write_code">Write your code here</string>
+    <string name="compile_run">Compile &amp; Run</string>
+    
+    <!-- Problem List -->
+    <string name="problems">Problems</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
+    
+    <!-- Problem Detail -->
+    <string name="problem_title">Problem</string>
+    <string name="problem_statement">Problem Statement</string>
+    <string name="input_format">Input Format</string>
+    <string name="output_format">Output Format</string>
+    <string name="example">Example</string>
+    <string name="submit">Submit</string>
+    
+    <!-- Profile -->
+    <string name="profile">Profile</string>
+    <string name="total_coins">Total Coins</string>
+    <string name="levels_completed">Levels Completed</string>
+    <string name="problems_solved">Problems Solved</string>
+    
+    <!-- Settings -->
+    <string name="settings">Settings</string>
+    <string name="notifications">Notifications</string>
+    <string name="sound">Sound</string>
+    <string name="theme">Theme</string>
+    
+    <!-- Common -->
+    <string name="loading">Loading...</string>
+    <string name="error">Error occurred</string>
+    <string name="retry">Retry</string>

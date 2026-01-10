@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <!-- App Colors -->
+    <color name="primary">#FF6200EE</color>
+    <color name="primary_dark">#FF3700B3</color>
+    <color name="accent">#FF03DAC5</color>
+    
+    <!-- Gradient Colors -->
+    <color name="gradient_start">#FF6B6BFF</color>
+    <color name="gradient_end">#FF8E54E9</color>
+    
+    <!-- Language Colors -->
+    <color name="color_c">#FF5C6BC0</color>
+    <color name="color_cpp">#FF42A5F5</color>
+    <color name="color_java">#FFEF5350</color>
+    <color name="color_python">#FFFFA726</color>
+    
+    <!-- UI Colors -->
+    <color name="correct_green">#FF4CAF50</color>
+    <color name="wrong_red">#FFF44336</color>
+    <color name="locked_gray">#FF9E9E9E</color>
+    <color name="background">#FFF5F5F5</color>
+    <color name="card_background">#FFFFFFFF</color>
+    <color name="editor_background">#FF263238</color>
+</resources>
