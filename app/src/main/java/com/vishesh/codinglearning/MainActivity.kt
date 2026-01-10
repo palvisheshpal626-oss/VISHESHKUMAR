@@ -18,6 +18,7 @@ import com.vishesh.codinglearning.data.UserPreferencesRepository
 import com.vishesh.codinglearning.data.api.MockCompilerApi
 import com.vishesh.codinglearning.data.repository.*
 import com.vishesh.codinglearning.domain.usecase.*
+import com.vishesh.codinglearning.data.model.ProgrammingLanguage
 import com.vishesh.codinglearning.ui.home.HomeScreen
 import com.vishesh.codinglearning.ui.home.HomeViewModel
 import com.vishesh.codinglearning.ui.language.LanguageSelectionScreen
@@ -26,8 +27,15 @@ import com.vishesh.codinglearning.ui.level.LevelSelectionScreen
 import com.vishesh.codinglearning.ui.level.LevelViewModel
 import com.vishesh.codinglearning.ui.mcq.McqScreen
 import com.vishesh.codinglearning.ui.mcq.McqViewModel
+import com.vishesh.codinglearning.ui.problem.ProblemDetailScreen
+import com.vishesh.codinglearning.ui.problem.ProblemListScreen
+import com.vishesh.codinglearning.ui.problem.ProblemViewModel
 import com.vishesh.codinglearning.ui.result.ResultScreen
 import com.vishesh.codinglearning.ui.theme.CodingLearningTheme
+import com.vishesh.codinglearning.ui.trycode.TryCodeScreen
+import com.vishesh.codinglearning.ui.trycode.TryCodeViewModel
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 
 class MainActivity : ComponentActivity() {
     
@@ -141,10 +149,74 @@ class MainActivity : ComponentActivity() {
                     correctAnswers = correct,
                     totalQuestions = total,
                     onContinue = {
-                        // TODO: Navigate to Try Code screen
-                        navController.navigate("home") {
-                            popUpTo("home") { inclusive = true }
-                        }
+                        // TODO: Show interstitial ad here
+                        navController.navigate("try_code")
+                    }
+                )
+            }
+            
+            composable("try_code") {
+                // Get selected language
+                val language = runBlocking {
+                    userPreferencesRepository.selectedLanguageFlow.first()
+                } ?: ProgrammingLanguage.PYTHON
+                
+                val viewModel = TryCodeViewModel(
+                    runCodeUseCase = RunCodeUseCase(compilerRepository),
+                    language = language
+                )
+                TryCodeScreen(
+                    viewModel = viewModel,
+                    onNavigateBack = {
+                        navController.popBackStack()
+                    },
+                    onNavigateToProblems = {
+                        navController.navigate("problem_list")
+                    }
+                )
+            }
+            
+            composable("problem_list") {
+                val language = runBlocking {
+                    userPreferencesRepository.selectedLanguageFlow.first()
+                } ?: ProgrammingLanguage.PYTHON
+                
+                val viewModel = ProblemViewModel(
+                    problemRepository = problemRepository,
+                    submitProblemUseCase = SubmitProblemUseCase(
+                        compilerRepository,
+                        userPreferencesRepository
+                    ),
+                    language = language
+                )
+                ProblemListScreen(
+                    viewModel = viewModel,
+                    onNavigateBack = {
+                        navController.popBackStack()
+                    },
+                    onNavigateToProblemDetail = {
+                        navController.navigate("problem_detail")
+                    }
+                )
+            }
+            
+            composable("problem_detail") {
+                val language = runBlocking {
+                    userPreferencesRepository.selectedLanguageFlow.first()
+                } ?: ProgrammingLanguage.PYTHON
+                
+                val viewModel = ProblemViewModel(
+                    problemRepository = problemRepository,
+                    submitProblemUseCase = SubmitProblemUseCase(
+                        compilerRepository,
+                        userPreferencesRepository
+                    ),
+                    language = language
+                )
+                ProblemDetailScreen(
+                    viewModel = viewModel,
+                    onNavigateBack = {
+                        navController.popBackStack()
                     }
                 )
             }
