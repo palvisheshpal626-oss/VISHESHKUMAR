@@ -4,6 +4,13 @@ plugins {
     id("com.google.gms.google-services")
 }
 
+// Fallback repositories in case dependencyResolutionManagement is not recognized
+// This is a workaround for Gradle cache issues
+repositories {
+    google()
+    mavenCentral()
+}
+
 android {
     namespace = "com.codinglearning.app"
     compileSdk = 34
