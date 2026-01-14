@@ -23,11 +23,39 @@ class LevelRepository(private val prefsManager: PreferencesManager) {
         val highestCompleted = prefsManager.getHighestCompletedLevel()
         
         return levels.map { level ->
+            val stars = prefsManager.getLevelStars(level.id)
+            val isSectionUnlocked = isSectionUnlocked(level, levels)
+            
             LevelState(
                 level = level,
-                isUnlocked = level.id <= highestCompleted + 1,
-                isCompleted = prefsManager.isLevelCompleted(level.id)
+                isUnlocked = isSectionUnlocked && (level.id <= highestCompleted + 1),
+                isCompleted = prefsManager.isLevelCompleted(level.id),
+                starsEarned = stars
             )
+        }
+    }
+    
+    private fun isSectionUnlocked(level: Level, allLevels: List<Level>): Boolean {
+        return when (level.section) {
+            LevelSection.EASY -> true // Easy is always unlocked
+            LevelSection.MEDIUM -> {
+                // Unlock Medium if user has at least 50% of possible stars from Easy
+                val easyLevels = allLevels.filter { it.section == LevelSection.EASY }
+                val easyLevelIds = easyLevels.map { it.id }
+                val easyStars = prefsManager.getStarsInSection(easyLevelIds)
+                val maxPossibleEasyStars = easyLevels.size * 3
+                easyStars >= (maxPossibleEasyStars * 0.5).toInt()
+            }
+            LevelSection.HARD -> {
+                // Unlock Hard if user has at least 60% of possible stars from Easy + Medium
+                val easyMediumLevels = allLevels.filter { 
+                    it.section == LevelSection.EASY || it.section == LevelSection.MEDIUM 
+                }
+                val easyMediumLevelIds = easyMediumLevels.map { it.id }
+                val totalStars = prefsManager.getStarsInSection(easyMediumLevelIds)
+                val maxPossibleStars = easyMediumLevels.size * 3
+                totalStars >= (maxPossibleStars * 0.6).toInt()
+            }
         }
     }
     
@@ -81,7 +109,8 @@ class LevelRepository(private val prefsManager: PreferencesManager) {
                     )
                 ),
                 videoUrl = null,
-                coinsReward = 50
+                coinsReward = 50,
+                section = LevelSection.EASY
             ),
             Level(
                 id = 2,
@@ -117,7 +146,8 @@ class LevelRepository(private val prefsManager: PreferencesManager) {
                     )
                 ),
                 videoUrl = null,
-                coinsReward = 50
+                coinsReward = 50,
+                section = LevelSection.EASY
             )
         )
     }

@@ -16,6 +16,8 @@ class PreferencesManager(context: Context) {
         private const val KEY_SELECTED_LANGUAGE = "selected_language"
         private const val KEY_HIGHEST_COMPLETED_LEVEL = "highest_completed_level"
         private const val KEY_COMPLETED_LEVELS = "completed_levels"
+        private const val KEY_TOTAL_STARS = "total_stars"
+        private const val KEY_LEVEL_STARS_PREFIX = "level_stars_"
     }
     
     fun saveUserProgress(progress: UserProgress) {
@@ -24,18 +26,32 @@ class PreferencesManager(context: Context) {
             putString(KEY_SELECTED_LANGUAGE, progress.selectedLanguage)
             putInt(KEY_HIGHEST_COMPLETED_LEVEL, progress.highestCompletedLevel)
             putStringSet(KEY_COMPLETED_LEVELS, progress.completedLevels.map { it.toString() }.toSet())
+            putInt(KEY_TOTAL_STARS, progress.totalStarsEarned)
             apply()
         }
     }
     
     fun getUserProgress(): UserProgress {
+        val levelStarsMap = mutableMapOf<Int, Int>()
+        val completedLevels = prefs.getStringSet(KEY_COMPLETED_LEVELS, emptySet())
+            ?.mapNotNull { it.toIntOrNull() }
+            ?.toSet() ?: emptySet()
+        
+        // Load stars for all completed levels
+        completedLevels.forEach { levelId ->
+            val stars = prefs.getInt(KEY_LEVEL_STARS_PREFIX + levelId, 0)
+            if (stars > 0) {
+                levelStarsMap[levelId] = stars
+            }
+        }
+        
         return UserProgress(
             coins = prefs.getInt(KEY_COINS, 0),
             selectedLanguage = prefs.getString(KEY_SELECTED_LANGUAGE, "") ?: "",
             highestCompletedLevel = prefs.getInt(KEY_HIGHEST_COMPLETED_LEVEL, 0),
-            completedLevels = prefs.getStringSet(KEY_COMPLETED_LEVELS, emptySet())
-                ?.mapNotNull { it.toIntOrNull() }
-                ?.toSet() ?: emptySet()
+            completedLevels = completedLevels,
+            totalStarsEarned = prefs.getInt(KEY_TOTAL_STARS, 0),
+            levelStars = levelStarsMap
         )
     }
     
@@ -61,7 +77,7 @@ class PreferencesManager(context: Context) {
     
     fun getSelectedLanguage(): String = prefs.getString(KEY_SELECTED_LANGUAGE, "") ?: ""
     
-    fun completeLevel(levelId: Int) {
+    fun completeLevel(levelId: Int, starsEarned: Int = 0) {
         val currentHighest = prefs.getInt(KEY_HIGHEST_COMPLETED_LEVEL, 0)
         if (levelId > currentHighest) {
             prefs.edit().putInt(KEY_HIGHEST_COMPLETED_LEVEL, levelId).apply()
@@ -71,6 +87,19 @@ class PreferencesManager(context: Context) {
             ?.toMutableSet() ?: mutableSetOf()
         completedLevels.add(levelId.toString())
         prefs.edit().putStringSet(KEY_COMPLETED_LEVELS, completedLevels).apply()
+        
+        // Save stars for this level (only if better than previous)
+        if (starsEarned > 0) {
+            val currentStars = prefs.getInt(KEY_LEVEL_STARS_PREFIX + levelId, 0)
+            if (starsEarned > currentStars) {
+                prefs.edit().putInt(KEY_LEVEL_STARS_PREFIX + levelId, starsEarned).apply()
+                
+                // Update total stars
+                val starDifference = starsEarned - currentStars
+                val currentTotal = prefs.getInt(KEY_TOTAL_STARS, 0)
+                prefs.edit().putInt(KEY_TOTAL_STARS, currentTotal + starDifference).apply()
+            }
+        }
     }
     
     fun getHighestCompletedLevel(): Int = prefs.getInt(KEY_HIGHEST_COMPLETED_LEVEL, 0)
@@ -78,5 +107,21 @@ class PreferencesManager(context: Context) {
     fun isLevelCompleted(levelId: Int): Boolean {
         val completedLevels = prefs.getStringSet(KEY_COMPLETED_LEVELS, emptySet())
         return completedLevels?.contains(levelId.toString()) ?: false
+    }
+    
+    fun getLevelStars(levelId: Int): Int {
+        return prefs.getInt(KEY_LEVEL_STARS_PREFIX + levelId, 0)
+    }
+    
+    fun getTotalStars(): Int {
+        return prefs.getInt(KEY_TOTAL_STARS, 0)
+    }
+    
+    fun getStarsInSection(levelIds: List<Int>): Int {
+        var totalStars = 0
+        levelIds.forEach { levelId ->
+            totalStars += getLevelStars(levelId)
+        }
+        return totalStars
     }
 }

@@ -21,6 +21,9 @@ class ResultFragment : Fragment() {
     private var correctAnswers = 0
     private var coinsEarned = 0
     private var levelId = 1
+    private var starsEarned = 0
+    private var hintsUsed = 0
+    private var timeSeconds: Long = 0
     private var interstitialAd: InterstitialAd? = null
     private lateinit var prefsManager: PreferencesManager
     
@@ -29,12 +32,18 @@ class ResultFragment : Fragment() {
         private const val ARG_CORRECT = "correct_answers"
         private const val ARG_COINS = "coins_earned"
         private const val ARG_LEVEL_ID = "level_id"
+        private const val ARG_STARS = "stars_earned"
+        private const val ARG_HINTS = "hints_used"
+        private const val ARG_TIME = "time_seconds"
         
         fun newInstance(
             totalQuestions: Int,
             correctAnswers: Int,
             coinsEarned: Int,
-            levelId: Int
+            levelId: Int,
+            starsEarned: Int = 0,
+            hintsUsed: Int = 0,
+            timeSeconds: Long = 0
         ): ResultFragment {
             return ResultFragment().apply {
                 arguments = Bundle().apply {
@@ -42,6 +51,9 @@ class ResultFragment : Fragment() {
                     putInt(ARG_CORRECT, correctAnswers)
                     putInt(ARG_COINS, coinsEarned)
                     putInt(ARG_LEVEL_ID, levelId)
+                    putInt(ARG_STARS, starsEarned)
+                    putInt(ARG_HINTS, hintsUsed)
+                    putLong(ARG_TIME, timeSeconds)
                 }
             }
         }
@@ -54,6 +66,9 @@ class ResultFragment : Fragment() {
             correctAnswers = it.getInt(ARG_CORRECT, 0)
             coinsEarned = it.getInt(ARG_COINS, 0)
             levelId = it.getInt(ARG_LEVEL_ID, 1)
+            starsEarned = it.getInt(ARG_STARS, 0)
+            hintsUsed = it.getInt(ARG_HINTS, 0)
+            timeSeconds = it.getLong(ARG_TIME, 0)
         }
     }
     
@@ -69,6 +84,11 @@ class ResultFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         
         prefsManager = PreferencesManager(requireContext())
+        
+        // Save stars to preferences (only if better than previous)
+        if (starsEarned > 0) {
+            prefsManager.completeLevel(levelId, starsEarned)
+        }
         
         displayResults(view)
         loadInterstitialAd()
@@ -94,6 +114,17 @@ class ResultFragment : Fragment() {
         
         view.findViewById<TextView>(R.id.tv_coins_earned).text =
             getString(R.string.coins_earned, coinsEarned)
+        
+        // Display stars with visual representation
+        val starsText = "★".repeat(starsEarned) + "☆".repeat(3 - starsEarned)
+        view.findViewById<TextView>(R.id.tv_stars_earned)?.text = 
+            "Stars: $starsText ($starsEarned/3)"
+        
+        // Display performance info
+        val minutes = timeSeconds / 60
+        val seconds = timeSeconds % 60
+        view.findViewById<TextView>(R.id.tv_performance_info)?.text =
+            "Time: ${minutes}m ${seconds}s | Hints: $hintsUsed"
     }
     
     private fun loadInterstitialAd() {

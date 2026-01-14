@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import com.codinglearning.app.R
 import com.codinglearning.app.data.local.PreferencesManager
 import com.codinglearning.app.data.model.MCQQuestion
+import com.codinglearning.app.data.model.MCQSessionStats
 import com.codinglearning.app.data.repository.LevelRepository
 import com.codinglearning.app.ui.result.ResultFragment
 import com.google.android.gms.ads.AdRequest
@@ -30,7 +31,12 @@ class MCQFragment : Fragment() {
     private var questions: List<MCQQuestion> = emptyList()
     private var currentQuestionIndex = 0
     private var correctAnswersCount = 0
+    private var wrongAnswersCount = 0
+    private var hintsUsedCount = 0
     private var totalCoinsEarned = 0
+    private var sessionStartTime: Long = 0
+    private var questionStartTime: Long = 0
+    private val questionTimes = mutableListOf<Long>()
     private var rewardedAd: RewardedAd? = null
     private var bannerAdView: AdView? = null
     
@@ -49,6 +55,7 @@ class MCQFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         levelId = arguments?.getInt(ARG_LEVEL_ID, 1) ?: 1
+        sessionStartTime = System.currentTimeMillis()
     }
     
     override fun onCreateView(
@@ -95,6 +102,9 @@ class MCQFragment : Fragment() {
             return
         }
         
+        // Start timing for this question
+        questionStartTime = System.currentTimeMillis()
+        
         val question = questions[currentQuestionIndex]
         view?.let { v ->
             v.findViewById<TextView>(R.id.tv_question_number).text =
@@ -128,6 +138,10 @@ class MCQFragment : Fragment() {
             return
         }
         
+        // Record time taken for this question
+        val questionTime = (System.currentTimeMillis() - questionStartTime) / 1000
+        questionTimes.add(questionTime)
+        
         val selectedIndex = radioGroup.indexOfChild(radioGroup.findViewById(selectedId))
         val question = questions[currentQuestionIndex]
         
@@ -144,6 +158,7 @@ class MCQFragment : Fragment() {
             ).show()
         } else {
             // Wrong answer
+            wrongAnswersCount++
             Toast.makeText(
                 requireContext(),
                 getString(R.string.wrong_answer),
@@ -160,12 +175,14 @@ class MCQFragment : Fragment() {
         val hintCost = 20
         
         if (prefsManager.deductCoins(hintCost)) {
+            hintsUsedCount++
             showHint()
         } else {
             // Not enough coins, show rewarded ad
             if (rewardedAd != null) {
                 rewardedAd?.show(requireActivity()) { rewardItem ->
                     prefsManager.addCoins(hintCost)
+                    hintsUsedCount++
                     showHint()
                     loadRewardedAd() // Load next ad
                 }
@@ -218,11 +235,28 @@ class MCQFragment : Fragment() {
     }
     
     private fun showResults() {
+        val totalTimeSeconds = (System.currentTimeMillis() - sessionStartTime) / 1000
+        
+        val sessionStats = MCQSessionStats(
+            levelId = levelId,
+            totalQuestions = questions.size,
+            correctAnswers = correctAnswersCount,
+            wrongAnswers = wrongAnswersCount,
+            hintsUsed = hintsUsedCount,
+            totalTimeSeconds = totalTimeSeconds,
+            questionTimes = questionTimes
+        )
+        
+        val starsEarned = sessionStats.calculateStars()
+        
         val fragment = ResultFragment.newInstance(
             totalQuestions = questions.size,
             correctAnswers = correctAnswersCount,
             coinsEarned = totalCoinsEarned,
-            levelId = levelId
+            levelId = levelId,
+            starsEarned = starsEarned,
+            hintsUsed = hintsUsedCount,
+            timeSeconds = totalTimeSeconds
         )
         
         parentFragmentManager.beginTransaction()
