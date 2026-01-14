@@ -5,9 +5,17 @@ import com.codinglearning.app.data.model.*
 
 class LevelRepository(private val prefsManager: PreferencesManager) {
     
+    data class Section(
+        val number: Int,
+        val title: String,
+        val description: String,
+        val difficulty: LevelSection
+    )
+    
     fun getLevels(language: String): List<Level> {
-        // Sample levels for demonstration
-        // In production, this would come from Firebase or a local database
+        // Comprehensive level structure: 10 sections × 10 levels = 100 levels per language
+        // Total: 500 levels across all 5 languages
+        // Structure ready for content addition by developer
         return when (language.lowercase()) {
             "python" -> getPythonLevels()
             "java" -> getJavaLevels()
@@ -60,255 +68,230 @@ class LevelRepository(private val prefsManager: PreferencesManager) {
     }
     
     private fun getPythonLevels(): List<Level> {
-        return listOf(
-            Level(
-                id = 1,
-                title = "Introduction to Python",
-                language = "Python",
-                mcqQuestions = listOf(
-                    MCQQuestion(
-                        id = "py1_q1",
-                        question = "What is Python?",
-                        options = listOf(
-                            "A snake",
-                            "A high-level programming language",
-                            "A low-level programming language",
-                            "An operating system"
-                        ),
-                        correctAnswerIndex = 1,
-                        hint = "Think about what we use Python for in programming",
-                        explanation = "Python is a high-level, interpreted programming language known for its simplicity and readability."
-                    ),
-                    MCQQuestion(
-                        id = "py1_q2",
-                        question = "Which keyword is used to print output in Python?",
-                        options = listOf("echo", "print", "console", "output"),
-                        correctAnswerIndex = 1,
-                        hint = "It's the same word we use to print documents!",
-                        explanation = "The print() function is used to output text in Python."
-                    )
-                ),
-                codeExample = CodeExample(
-                    title = "Hello World in Python",
-                    code = "# This is a comment\nprint(\"Hello, World!\")\nprint(\"Welcome to Python programming!\")",
-                    language = "Python",
-                    description = "This is your first Python program. The print() function displays text on the screen."
-                ),
-                problems = listOf(
-                    Problem(
-                        id = "py1_p1",
-                        title = "Print Your Name",
-                        description = "Write a program that prints your name.",
-                        difficulty = Difficulty.EASY,
-                        language = "Python",
-                        starterCode = "# Write your code here\nname = \"Your Name\"\n# Print the name",
-                        testCases = listOf(
-                            TestCase("", "Your Name")
-                        ),
-                        coinsReward = 30
-                    )
-                ),
-                videoUrl = null,
-                coinsReward = 50,
-                section = LevelSection.EASY
-            ),
-            Level(
-                id = 2,
-                title = "Variables and Data Types",
-                language = "Python",
-                mcqQuestions = listOf(
-                    MCQQuestion(
-                        id = "py2_q1",
-                        question = "Which of these is a valid variable name in Python?",
-                        options = listOf("2name", "my-name", "my_name", "my name"),
-                        correctAnswerIndex = 2,
-                        hint = "Variable names cannot start with numbers or contain spaces",
-                        explanation = "my_name is valid. Variable names can contain letters, numbers, and underscores, but cannot start with a number or contain spaces."
-                    )
-                ),
-                codeExample = CodeExample(
-                    title = "Variables in Python",
-                    code = "# Storing values in variables\nname = \"Alice\"\nage = 25\nheight = 5.6\n\nprint(f\"Name: {name}\")\nprint(f\"Age: {age}\")\nprint(f\"Height: {height}\")",
-                    language = "Python",
-                    description = "Variables store data that can be used later in your program."
-                ),
-                problems = listOf(
-                    Problem(
-                        id = "py2_p1",
-                        title = "Calculate Sum",
-                        description = "Create two variables with numbers and print their sum.",
-                        difficulty = Difficulty.EASY,
-                        language = "Python",
-                        starterCode = "# Create two variables\na = 5\nb = 10\n# Calculate and print their sum",
-                        testCases = listOf(
-                            TestCase("", "15")
-                        )
-                    )
-                ),
-                videoUrl = null,
-                coinsReward = 50,
-                section = LevelSection.EASY
-            )
+        // Python: 10 sections × 10 levels = 100 levels total
+        val sections = listOf(
+            Section(1, "Python Basics", "Learn Python basics including syntax, variables, and basic operations", LevelSection.EASY),
+            Section(2, "Control Flow", "Master if-else statements, loops, and conditional logic", LevelSection.EASY),
+            Section(3, "Functions", "Learn to create and use functions effectively", LevelSection.EASY),
+            Section(4, "Data Structures", "Work with lists, dictionaries, tuples, and sets", LevelSection.MEDIUM),
+            Section(5, "Object-Oriented Programming", "Understand classes, objects, and OOP principles", LevelSection.MEDIUM),
+            Section(6, "File Handling", "Learn to read from and write to files", LevelSection.MEDIUM),
+            Section(7, "Advanced OOP", "Master inheritance, polymorphism, and encapsulation", LevelSection.MEDIUM),
+            Section(8, "Libraries & Modules", "Explore Python's standard library and popular modules", LevelSection.HARD),
+            Section(9, "Advanced Topics", "Learn decorators, generators, and advanced Python features", LevelSection.HARD),
+            Section(10, "Expert Challenges", "Solve complex problems and real-world scenarios", LevelSection.HARD)
         )
+        
+        return sections.flatMapIndexed { sectionIndex, section ->
+            (1..10).map { levelInSection ->
+                val levelId = sectionIndex * 10 + levelInSection
+                createLevel(
+                    id = levelId,
+                    sectionNumber = section.number,
+                    levelInSection = levelInSection,
+                    sectionTitle = section.title,
+                    language = "Python",
+                    difficulty = section.difficulty
+                )
+            }
+        }
     }
     
     private fun getJavaLevels(): List<Level> {
-        return listOf(
-            Level(
-                id = 1,
-                title = "Introduction to Java",
-                language = "Java",
-                mcqQuestions = listOf(
-                    MCQQuestion(
-                        id = "java1_q1",
-                        question = "What is the extension of Java source files?",
-                        options = listOf(".java", ".class", ".jar", ".jav"),
-                        correctAnswerIndex = 0,
-                        hint = "The extension matches the language name",
-                        explanation = "Java source files use the .java extension. When compiled, they become .class files."
-                    )
-                ),
-                codeExample = CodeExample(
-                    title = "Hello World in Java",
-                    code = "public class HelloWorld {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, World!\");\n    }\n}",
-                    language = "Java",
-                    description = "Every Java program starts with a main method inside a class."
-                ),
-                problems = listOf(
-                    Problem(
-                        id = "java1_p1",
-                        title = "Print Message",
-                        description = "Write a Java program to print 'Learning Java'",
-                        difficulty = Difficulty.EASY,
-                        language = "Java",
-                        starterCode = "public class Main {\n    public static void main(String[] args) {\n        // Your code here\n    }\n}",
-                        testCases = listOf(
-                            TestCase("", "Learning Java")
-                        )
-                    )
-                ),
-                videoUrl = null
-            )
+        // Java: 10 sections × 10 levels = 100 levels total
+        val sections = listOf(
+            Section(1, "Java Fundamentals", "Learn Java basics including syntax, variables, and data types", LevelSection.EASY),
+            Section(2, "Control Structures", "Master if-else, switch, loops, and flow control", LevelSection.EASY),
+            Section(3, "Methods", "Learn to create and use methods effectively", LevelSection.EASY),
+            Section(4, "Arrays & Collections", "Work with arrays, ArrayList, HashMap, and more", LevelSection.MEDIUM),
+            Section(5, "OOP Principles", "Understand classes, objects, inheritance, and polymorphism", LevelSection.MEDIUM),
+            Section(6, "Exception Handling", "Master try-catch, throw, and custom exceptions", LevelSection.MEDIUM),
+            Section(7, "Advanced OOP", "Learn interfaces, abstract classes, and design principles", LevelSection.MEDIUM),
+            Section(8, "Multithreading", "Understand threads, synchronization, and concurrency", LevelSection.HARD),
+            Section(9, "Java 8+ Features", "Explore lambda, streams, and modern Java features", LevelSection.HARD),
+            Section(10, "Design Patterns", "Master common design patterns and best practices", LevelSection.HARD)
         )
+        
+        return sections.flatMapIndexed { sectionIndex, section ->
+            (1..10).map { levelInSection ->
+                val levelId = sectionIndex * 10 + levelInSection
+                createLevel(
+                    id = levelId,
+                    sectionNumber = section.number,
+                    levelInSection = levelInSection,
+                    sectionTitle = section.title,
+                    language = "Java",
+                    difficulty = section.difficulty
+                )
+            }
+        }
     }
     
     private fun getJavaScriptLevels(): List<Level> {
-        return listOf(
-            Level(
-                id = 1,
-                title = "Introduction to JavaScript",
-                language = "JavaScript",
-                mcqQuestions = listOf(
-                    MCQQuestion(
-                        id = "js1_q1",
-                        question = "Which keyword is used to declare a variable in modern JavaScript?",
-                        options = listOf("var", "let", "const", "Both let and const"),
-                        correctAnswerIndex = 3,
-                        hint = "Modern JavaScript has two main ways to declare variables",
-                        explanation = "Both 'let' and 'const' are used in modern JavaScript. 'let' for variables that change, 'const' for constants."
-                    )
-                ),
-                codeExample = CodeExample(
-                    title = "Variables in JavaScript",
-                    code = "// Using let for variables that change\nlet name = \"John\";\nname = \"Jane\";\n\n// Using const for constants\nconst age = 25;\n\nconsole.log(name);\nconsole.log(age);",
-                    language = "JavaScript",
-                    description = "JavaScript uses let and const to declare variables."
-                ),
-                problems = listOf(
-                    Problem(
-                        id = "js1_p1",
-                        title = "Declare and Log",
-                        description = "Create a variable with your favorite number and log it",
-                        difficulty = Difficulty.EASY,
-                        language = "JavaScript",
-                        starterCode = "// Declare your variable here\nconst favoriteNumber = 7;\n// Log it to console",
-                        testCases = listOf(
-                            TestCase("", "7")
-                        )
-                    )
-                ),
-                videoUrl = null
-            )
+        // JavaScript: 10 sections × 10 levels = 100 levels total
+        val sections = listOf(
+            Section(1, "JavaScript Basics", "Learn JS fundamentals including variables, types, and operators", LevelSection.EASY),
+            Section(2, "DOM Manipulation", "Master document object model and web page interaction", LevelSection.EASY),
+            Section(3, "Functions & Scope", "Understand functions, closures, and scope", LevelSection.EASY),
+            Section(4, "Arrays & Objects", "Work with arrays, objects, and JSON", LevelSection.MEDIUM),
+            Section(5, "Async Programming", "Learn callbacks, promises, and async/await", LevelSection.MEDIUM),
+            Section(6, "ES6+ Features", "Explore arrow functions, destructuring, and modules", LevelSection.MEDIUM),
+            Section(7, "API Integration", "Master fetch, AJAX, and REST APIs", LevelSection.MEDIUM),
+            Section(8, "Frameworks Introduction", "Get started with React, Vue, or Angular concepts", LevelSection.HARD),
+            Section(9, "Advanced Patterns", "Learn design patterns and advanced techniques", LevelSection.HARD),
+            Section(10, "Performance Optimization", "Master optimization and best practices", LevelSection.HARD)
         )
+        
+        return sections.flatMapIndexed { sectionIndex, section ->
+            (1..10).map { levelInSection ->
+                val levelId = sectionIndex * 10 + levelInSection
+                createLevel(
+                    id = levelId,
+                    sectionNumber = section.number,
+                    levelInSection = levelInSection,
+                    sectionTitle = section.title,
+                    language = "JavaScript",
+                    difficulty = section.difficulty
+                )
+            }
+        }
     }
     
     private fun getKotlinLevels(): List<Level> {
-        return listOf(
-            Level(
-                id = 1,
-                title = "Introduction to Kotlin",
-                language = "Kotlin",
-                mcqQuestions = listOf(
-                    MCQQuestion(
-                        id = "kt1_q1",
-                        question = "Which keyword is used to declare a read-only variable in Kotlin?",
-                        options = listOf("var", "val", "const", "let"),
-                        correctAnswerIndex = 1,
-                        hint = "It's short for 'value'",
-                        explanation = "'val' declares a read-only variable in Kotlin, while 'var' is for mutable variables."
-                    )
-                ),
-                codeExample = CodeExample(
-                    title = "Hello Kotlin",
-                    code = "fun main() {\n    val message = \"Hello, Kotlin!\"\n    println(message)\n}",
-                    language = "Kotlin",
-                    description = "Kotlin programs start with a main function."
-                ),
-                problems = listOf(
-                    Problem(
-                        id = "kt1_p1",
-                        title = "Print Greeting",
-                        description = "Print a greeting message",
-                        difficulty = Difficulty.EASY,
-                        language = "Kotlin",
-                        starterCode = "fun main() {\n    // Your code here\n}",
-                        testCases = listOf(
-                            TestCase("", "Hello, Kotlin!")
-                        )
-                    )
-                ),
-                videoUrl = null
-            )
+        // Kotlin: 10 sections × 10 levels = 100 levels total
+        val sections = listOf(
+            Section(1, "Kotlin Basics", "Learn Kotlin fundamentals including val, var, and basic types", LevelSection.EASY),
+            Section(2, "Control Flow", "Master when, if, loops, and ranges", LevelSection.EASY),
+            Section(3, "Functions", "Learn function syntax, parameters, and lambdas", LevelSection.EASY),
+            Section(4, "Collections", "Work with lists, sets, maps, and collection operations", LevelSection.MEDIUM),
+            Section(5, "OOP in Kotlin", "Understand classes, data classes, and objects", LevelSection.MEDIUM),
+            Section(6, "Null Safety", "Master nullable types and safe calls", LevelSection.MEDIUM),
+            Section(7, "Coroutines Basics", "Learn asynchronous programming with coroutines", LevelSection.MEDIUM),
+            Section(8, "Advanced Coroutines", "Master suspend functions, flows, and channels", LevelSection.HARD),
+            Section(9, "DSL & Extensions", "Create DSLs and extension functions", LevelSection.HARD),
+            Section(10, "Android Development", "Apply Kotlin to Android app development", LevelSection.HARD)
         )
+        
+        return sections.flatMapIndexed { sectionIndex, section ->
+            (1..10).map { levelInSection ->
+                val levelId = sectionIndex * 10 + levelInSection
+                createLevel(
+                    id = levelId,
+                    sectionNumber = section.number,
+                    levelInSection = levelInSection,
+                    sectionTitle = section.title,
+                    language = "Kotlin",
+                    difficulty = section.difficulty
+                )
+            }
+        }
     }
     
     private fun getCppLevels(): List<Level> {
-        return listOf(
-            Level(
-                id = 1,
-                title = "Introduction to C++",
-                language = "C++",
-                mcqQuestions = listOf(
-                    MCQQuestion(
-                        id = "cpp1_q1",
-                        question = "Which header file is needed for cout in C++?",
-                        options = listOf("stdio.h", "iostream", "conio.h", "stdlib.h"),
-                        correctAnswerIndex = 1,
-                        hint = "It's related to input/output streams",
-                        explanation = "iostream is the header for input/output streams, including cout and cin."
-                    )
-                ),
-                codeExample = CodeExample(
-                    title = "Hello C++",
-                    code = "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Hello, C++!\" << endl;\n    return 0;\n}",
+        // C++: 10 sections × 10 levels = 100 levels total
+        val sections = listOf(
+            Section(1, "C++ Fundamentals", "Learn C++ basics including syntax, variables, and I/O", LevelSection.EASY),
+            Section(2, "Control Structures", "Master if-else, switch, loops, and flow control", LevelSection.EASY),
+            Section(3, "Functions", "Learn function declaration, definition, and overloading", LevelSection.EASY),
+            Section(4, "Pointers & References", "Understand memory addresses, pointers, and references", LevelSection.MEDIUM),
+            Section(5, "OOP in C++", "Learn classes, constructors, destructors, and inheritance", LevelSection.MEDIUM),
+            Section(6, "Templates", "Master function templates and class templates", LevelSection.MEDIUM),
+            Section(7, "STL Containers", "Work with vectors, lists, maps, and sets", LevelSection.MEDIUM),
+            Section(8, "Memory Management", "Understand dynamic memory, new, delete, and smart pointers", LevelSection.HARD),
+            Section(9, "Advanced STL", "Master algorithms, iterators, and functional programming", LevelSection.HARD),
+            Section(10, "Modern C++", "Explore C++11/14/17 features and best practices", LevelSection.HARD)
+        )
+        
+        return sections.flatMapIndexed { sectionIndex, section ->
+            (1..10).map { levelInSection ->
+                val levelId = sectionIndex * 10 + levelInSection
+                createLevel(
+                    id = levelId,
+                    sectionNumber = section.number,
+                    levelInSection = levelInSection,
+                    sectionTitle = section.title,
                     language = "C++",
-                    description = "A basic C++ program with main function and cout statement."
-                ),
-                problems = listOf(
-                    Problem(
-                        id = "cpp1_p1",
-                        title = "Print Message",
-                        description = "Print 'Welcome to C++' to the console",
-                        difficulty = Difficulty.EASY,
-                        language = "C++",
-                        starterCode = "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Your code here\n    return 0;\n}",
-                        testCases = listOf(
-                            TestCase("", "Welcome to C++")
-                        )
-                    )
-                ),
-                videoUrl = null
-            )
+                    difficulty = section.difficulty
+                )
+            }
+        }
+    }
+    
+    // Helper function to create a level with placeholder content
+    private fun createLevel(
+        id: Int,
+        sectionNumber: Int,
+        levelInSection: Int,
+        sectionTitle: String,
+        language: String,
+        difficulty: LevelSection
+    ): Level {
+        val langPrefix = when(language.lowercase()) {
+            "python" -> "py"
+            "java" -> "java"
+            "javascript" -> "js"
+            "kotlin" -> "kt"
+            "c++" -> "cpp"
+            else -> "lang"
+        }
+        
+        return Level(
+            id = id,
+            title = "$sectionTitle - Level $levelInSection",
+            language = language,
+            mcqQuestions = listOf(
+                createPlaceholderMCQ(langPrefix, sectionNumber, levelInSection, 1),
+                createPlaceholderMCQ(langPrefix, sectionNumber, levelInSection, 2)
+            ),
+            codeExample = CodeExample(
+                title = "Example for $sectionTitle Level $levelInSection",
+                code = "// Code example will be added by developer\n// This section covers: $sectionTitle\n// Level: $levelInSection of 10",
+                language = language,
+                description = "This section contains 10 levels. Content will be added later."
+            ),
+            problems = listOf(
+                Problem(
+                    id = "${langPrefix}_s${sectionNumber}_l${levelInSection}_p1",
+                    title = "Practice Problem",
+                    description = "Problem description will be added by developer",
+                    difficulty = when(difficulty) {
+                        LevelSection.EASY -> Difficulty.EASY
+                        LevelSection.MEDIUM -> Difficulty.MEDIUM
+                        LevelSection.HARD -> Difficulty.HARD
+                    },
+                    language = language,
+                    starterCode = "// Starter code will be added by developer",
+                    testCases = listOf(
+                        TestCase("", "Expected output")
+                    ),
+                    coinsReward = 30
+                )
+            ),
+            videoUrl = null,
+            coinsReward = 50,
+            section = difficulty
+        )
+    }
+    
+    // Helper function to create placeholder MCQ questions
+    private fun createPlaceholderMCQ(
+        langPrefix: String,
+        sectionNumber: Int,
+        levelInSection: Int,
+        questionNumber: Int
+    ): MCQQuestion {
+        return MCQQuestion(
+            id = "${langPrefix}_s${sectionNumber}_l${levelInSection}_q${questionNumber}",
+            question = "[SECTION $sectionNumber] Question $questionNumber for Level $levelInSection - To be added by developer",
+            options = listOf(
+                "Option A (Incorrect) - To be added",
+                "Option B (CORRECT ANSWER) - To be added",
+                "Option C (Incorrect) - To be added",
+                "Option D (Incorrect) - To be added"
+            ),
+            correctAnswerIndex = 1, // Option B is marked as correct for easy identification
+            hint = "Hint will be added later by developer",
+            explanation = "Detailed explanation will be added later by developer"
         )
     }
 }
