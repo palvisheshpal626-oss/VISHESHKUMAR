@@ -18,6 +18,7 @@ class PreferencesManager(context: Context) {
         private const val KEY_COMPLETED_LEVELS = "completed_levels"
         private const val KEY_TOTAL_STARS = "total_stars"
         private const val KEY_LEVEL_STARS_PREFIX = "level_stars_"
+        private const val KEY_COMPLETED_PROBLEMS = "completed_problems"
     }
     
     fun saveUserProgress(progress: UserProgress) {
@@ -123,5 +124,18 @@ class PreferencesManager(context: Context) {
             totalStars += getLevelStars(levelId)
         }
         return totalStars
+    }
+    
+    // Problem completion tracking
+    fun isProblemCompleted(problemId: String): Boolean {
+        val completedProblems = prefs.getStringSet(KEY_COMPLETED_PROBLEMS, emptySet())
+        return completedProblems?.contains(problemId) ?: false
+    }
+    
+    fun completeProblem(problemId: String) {
+        val completedProblems = prefs.getStringSet(KEY_COMPLETED_PROBLEMS, emptySet())
+            ?.toMutableSet() ?: mutableSetOf()
+        completedProblems.add(problemId)
+        prefs.edit().putStringSet(KEY_COMPLETED_PROBLEMS, completedProblems).apply()
     }
 }
