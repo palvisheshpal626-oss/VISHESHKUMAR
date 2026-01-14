@@ -91,6 +91,8 @@ class TryCodeFragment : Fragment() {
         }
     }
     
+    private var isExecuting = false  // Prevent duplicate API calls
+    
     private fun runCode(view: View) {
         val code = view.findViewById<EditText>(R.id.et_code).text.toString()
         val outputTextView = view.findViewById<TextView>(R.id.tv_output)
@@ -105,7 +107,13 @@ class TryCodeFragment : Fragment() {
             return
         }
         
+        // Prevent duplicate executions
+        if (isExecuting) {
+            return
+        }
+        
         runButton.isEnabled = false
+        isExecuting = true
         outputTextView.text = "Running code..."
         
         lifecycleScope.launch {
@@ -119,11 +127,14 @@ class TryCodeFragment : Fragment() {
                         "Network error: Please check your internet connection"
                     e.message?.contains("timeout") == true -> 
                         "Request timeout: The code took too long to execute"
-                    else -> "Error: ${e.message}"
+                    e.message?.contains("SocketTimeoutException") == true ->
+                        "Connection timeout: Please try again"
+                    else -> "Error: ${e.message ?: "Unknown error occurred"}"
                 }
                 outputTextView.text = errorMessage
             } finally {
                 runButton.isEnabled = true
+                isExecuting = false
             }
         }
     }

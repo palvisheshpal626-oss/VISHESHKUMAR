@@ -93,12 +93,14 @@ class PreferencesManager(context: Context) {
         if (starsEarned > 0) {
             val currentStars = prefs.getInt(KEY_LEVEL_STARS_PREFIX + levelId, 0)
             if (starsEarned > currentStars) {
-                prefs.edit().putInt(KEY_LEVEL_STARS_PREFIX + levelId, starsEarned).apply()
+                val editor = prefs.edit()
+                editor.putInt(KEY_LEVEL_STARS_PREFIX + levelId, starsEarned)
                 
-                // Update total stars
+                // Update total stars - ensure no negative values
                 val starDifference = starsEarned - currentStars
                 val currentTotal = prefs.getInt(KEY_TOTAL_STARS, 0)
-                prefs.edit().putInt(KEY_TOTAL_STARS, currentTotal + starDifference).apply()
+                editor.putInt(KEY_TOTAL_STARS, maxOf(0, currentTotal + starDifference))
+                editor.apply()
             }
         }
     }

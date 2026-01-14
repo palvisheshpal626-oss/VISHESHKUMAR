@@ -1,9 +1,11 @@
 package com.codinglearning.app.network
 
+import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.File
 import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
@@ -21,6 +23,7 @@ object RetrofitClient {
         .connectTimeout(30, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
         .writeTimeout(30, TimeUnit.SECONDS)
+        .retryOnConnectionFailure(true)
         .build()
     
     private val retrofit = Retrofit.Builder()
@@ -30,6 +33,9 @@ object RetrofitClient {
         .build()
     
     val compilerApi: CompilerApiService = retrofit.create(CompilerApiService::class.java)
+    
+    // Alias for backward compatibility
+    val compilerService: CompilerApiService = compilerApi
     
     // Language version mapping for Piston API
     // These are stable versions that work reliably
