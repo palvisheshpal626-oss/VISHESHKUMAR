@@ -96,56 +96,95 @@ class TryCodeFragment : Fragment() {
         val outputTextView = view.findViewById<TextView>(R.id.tv_output)
         val runButton = view.findViewById<Button>(R.id.btn_run_code)
         
+        if (code.isBlank()) {
+            Toast.makeText(
+                requireContext(),
+                "Please write some code first",
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+        
         runButton.isEnabled = false
-        outputTextView.text = getString(R.string.loading)
+        outputTextView.text = "Running code..."
         
         lifecycleScope.launch {
             try {
-                // In production, this would call the actual API
-                // For now, we'll simulate the output
-                val simulatedOutput = simulateCodeExecution(code, codeExample.language)
-                outputTextView.text = simulatedOutput
+                val result = executeCodeWithPiston(code, codeExample.language)
+                outputTextView.text = result
                 hasRunCode = true
-                
-                // Note: In production, uncomment below to use real API
-                /*
-                val request = CodeExecutionRequest(
-                    code = code,
-                    language = codeExample.language
-                )
-                val response = RetrofitClient.compilerApi.executeCode(request)
-                outputTextView.text = response.output ?: response.error ?: "No output"
-                hasRunCode = true
-                */
             } catch (e: Exception) {
-                outputTextView.text = "Error: ${e.message}"
+                val errorMessage = when {
+                    e.message?.contains("Unable to resolve host") == true -> 
+                        "Network error: Please check your internet connection"
+                    e.message?.contains("timeout") == true -> 
+                        "Request timeout: The code took too long to execute"
+                    else -> "Error: ${e.message}"
+                }
+                outputTextView.text = errorMessage
             } finally {
                 runButton.isEnabled = true
             }
         }
     }
     
-    private fun simulateCodeExecution(code: String, language: String): String {
-        // Simple simulation for demonstration
-        // In production, this would be handled by Firebase Cloud Functions
-        return when {
-            code.contains("print") && language.lowercase() == "python" -> {
-                "Hello, World!\nWelcome to Python programming!"
+    private suspend fun executeCodeWithPiston(code: String, language: String): String {
+        val languageId = RetrofitClient.getPistonLanguageId(language)
+        val version = RetrofitClient.getPistonLanguageVersion(language)
+        val fileName = RetrofitClient.getFileName(language)
+        
+        val request = com.codinglearning.app.network.PistonExecuteRequest(
+            language = languageId,
+            version = version,
+            files = listOf(
+                com.codinglearning.app.network.PistonFile(
+                    name = fileName,
+                    content = code
+                )
+            ),
+            stdin = "",
+            args = emptyList(),
+            compile_timeout = 10000,
+            run_timeout = 3000
+        )
+        
+        val response = RetrofitClient.compilerApi.executePiston(request)
+        
+        return buildOutputString(response)
+    }
+    
+    private fun buildOutputString(response: com.codinglearning.app.network.PistonExecuteResponse): String {
+        val output = StringBuilder()
+        
+        // Check for compilation errors first
+        response.compile?.let { compile ->
+            if (compile.code != 0 || compile.stderr.isNotEmpty()) {
+                output.append("Compilation Error:\n")
+                output.append(compile.stderr.ifEmpty { compile.output })
+                return output.toString()
             }
-            code.contains("println") && language.lowercase() == "java" -> {
-                "Learning Java"
-            }
-            code.contains("console.log") && language.lowercase() == "javascript" -> {
-                "Jane\n25"
-            }
-            code.contains("println") && language.lowercase() == "kotlin" -> {
-                "Hello, Kotlin!"
-            }
-            code.contains("cout") && language.lowercase() == "c++" -> {
-                "Hello, C++!"
-            }
-            else -> "Code executed successfully!"
         }
+        
+        // Check runtime output
+        val runOutput = response.run
+        
+        when {
+            runOutput.code != 0 && runOutput.stderr.isNotEmpty() -> {
+                output.append("Runtime Error:\n")
+                output.append(runOutput.stderr)
+            }
+            runOutput.stdout.isNotEmpty() -> {
+                output.append(runOutput.stdout)
+            }
+            runOutput.output.isNotEmpty() -> {
+                output.append(runOutput.output)
+            }
+            else -> {
+                output.append("Code executed successfully with no output.")
+            }
+        }
+        
+        return output.toString().trim()
     }
     
     private fun completeLevel() {

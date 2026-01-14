@@ -8,9 +8,9 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
     
-    // This should point to your Firebase Cloud Function
-    // DO NOT hardcode API keys here - they should be in Firebase Cloud Functions environment
-    private const val BASE_URL = "https://YOUR-FIREBASE-FUNCTION-URL.cloudfunctions.net/"
+    // Piston API - Free online code execution service
+    // https://github.com/engineer-man/piston
+    private const val PISTON_BASE_URL = "https://emkc.org/api/v2/piston/"
     
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
@@ -24,10 +24,47 @@ object RetrofitClient {
         .build()
     
     private val retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
+        .baseUrl(PISTON_BASE_URL)
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
     
     val compilerApi: CompilerApiService = retrofit.create(CompilerApiService::class.java)
+    
+    // Language version mapping for Piston API
+    // These are stable versions that work reliably
+    fun getPistonLanguageVersion(language: String): String {
+        return when (language.lowercase()) {
+            "python" -> "3.10.0"
+            "java" -> "15.0.2"
+            "javascript" -> "18.15.0"
+            "kotlin" -> "1.8.20"
+            "c++" -> "10.2.0"
+            else -> "latest"
+        }
+    }
+    
+    // Get proper language identifier for Piston API
+    fun getPistonLanguageId(language: String): String {
+        return when (language.lowercase()) {
+            "python" -> "python"
+            "java" -> "java"
+            "javascript" -> "javascript"
+            "kotlin" -> "kotlin"
+            "c++" -> "c++"
+            else -> language.lowercase()
+        }
+    }
+    
+    // Get appropriate file name for the language
+    fun getFileName(language: String): String {
+        return when (language.lowercase()) {
+            "python" -> "main.py"
+            "java" -> "Main.java"
+            "javascript" -> "main.js"
+            "kotlin" -> "Main.kt"
+            "c++" -> "main.cpp"
+            else -> "main.txt"
+        }
+    }
 }
