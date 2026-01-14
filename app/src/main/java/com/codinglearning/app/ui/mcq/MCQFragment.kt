@@ -172,7 +172,7 @@ class MCQFragment : Fragment() {
     }
     
     private fun getHint(view: View) {
-        val hintCost = 20
+        val hintCost = 25
         
         if (prefsManager.deductCoins(hintCost)) {
             hintsUsedCount++

@@ -34,6 +34,8 @@ class ProblemFragment : Fragment() {
     private lateinit var progressBar: ProgressBar
     private lateinit var resultContainer: LinearLayout
     private lateinit var resultTextView: TextView
+    
+    private var problemStartTime: Long = 0
 
     companion object {
         private const val ARG_PROBLEM = "problem"
@@ -71,6 +73,9 @@ class ProblemFragment : Fragment() {
         
         // Reconstruct problem from arguments
         problem = reconstructProblemFromArgs()
+        
+        // Start timing when problem screen is displayed
+        problemStartTime = System.currentTimeMillis()
         
         initializeViews(view)
         displayProblemDetails()
@@ -256,18 +261,31 @@ class ProblemFragment : Fragment() {
     private fun handleSuccess() {
         val wasAlreadyCompleted = prefsManager.isProblemCompleted(problem.id)
         
+        // Calculate time-based coin reward
+        val timeElapsedSeconds = (System.currentTimeMillis() - problemStartTime) / 1000
+        val coinsEarned = if (!wasAlreadyCompleted && timeElapsedSeconds <= 60) 10 else 0
+        
         if (!wasAlreadyCompleted) {
             prefsManager.completeProblem(problem.id)
-            prefsManager.addCoins(problem.coinsReward)
+            if (coinsEarned > 0) {
+                prefsManager.addCoins(coinsEarned)
+            }
         }
         
         val message = buildString {
             append("✓ SUCCESS!\n\n")
             append("All test cases passed!\n")
             append("Passed: ${problem.testCases.size}/${problem.testCases.size}\n\n")
+            append("Time: ${timeElapsedSeconds}s\n\n")
             
             if (!wasAlreadyCompleted) {
-                append("Coins earned: +${problem.coinsReward}")
+                if (coinsEarned > 0) {
+                    append("Coins earned: +${coinsEarned}\n")
+                    append("(Solved within 1 minute!)")
+                } else {
+                    append("Time exceeded 1 minute\n")
+                    append("No coins awarded")
+                }
             } else {
                 append("(Already completed - no additional coins)")
             }
@@ -280,9 +298,16 @@ class ProblemFragment : Fragment() {
             submitButton.text = "Completed ✓ (Retry)"
         }
         
+        val toastMessage = if (!wasAlreadyCompleted) {
+            if (coinsEarned > 0) "Problem solved! +${coinsEarned} coins (solved in ${timeElapsedSeconds}s)" 
+            else "Problem solved! (no coins - time exceeded 1 minute)"
+        } else {
+            "Problem completed again!"
+        }
+        
         Toast.makeText(
             requireContext(),
-            if (!wasAlreadyCompleted) "Problem solved! +${problem.coinsReward} coins" else "Problem completed again!",
+            toastMessage,
             Toast.LENGTH_LONG
         ).show()
     }
