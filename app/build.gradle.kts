@@ -27,13 +27,25 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            // TODO: Add signing config before release
+            // signingConfig = signingConfigs.getByName("release")
         }
     }
+    
+    // TODO: Uncomment and configure before Play Store release
+    // signingConfigs {
+    //     create("release") {
+    //         storeFile = file("release-key.jks")
+    //         storePassword = System.getenv("KEYSTORE_PASSWORD") ?: "CHANGE_ME"
+    //         keyAlias = "coding-learning-key"
+    //         keyPassword = System.getenv("KEY_PASSWORD") ?: "CHANGE_ME"
+    //     }
+    // }
     
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
