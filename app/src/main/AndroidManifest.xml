@@ -31,6 +31,13 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3940256099942544~3347511713"/>
+        
+        <!-- Resolve manifest merger conflict between play-services-ads-lite and play-services-measurement-api -->
+        <!-- Override conflicting AD_SERVICES property from Google Play Services libraries -->
+        <property
+            android:name="com.google.android.gms.ads.AD_SERVICES"
+            android:value="true"
+            tools:replace="android:value" />
             
     </application>
 
