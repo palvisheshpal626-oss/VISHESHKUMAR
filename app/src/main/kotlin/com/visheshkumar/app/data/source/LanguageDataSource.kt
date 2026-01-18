@@ -105,20 +105,40 @@ object LanguageDataSource {
     
     /**
      * Get a specific section by ID.
-     * @param sectionId The ID of the section
+     * @param sectionId The ID of the section (format: languageId_section_N)
      * @return The section or null if not found
      */
     fun getSectionById(sectionId: String): Section? {
-        return getAllSections().find { it.id == sectionId }
+        // Parse the sectionId to extract languageId and section number
+        // Format: languageId_section_N
+        val parts = sectionId.split("_section_")
+        if (parts.size != 2) return null
+        
+        val languageId = parts[0]
+        val sectionNum = parts[1].toIntOrNull() ?: return null
+        
+        if (sectionNum !in 1..10) return null
+        
+        return getSectionsForLanguage(languageId).getOrNull(sectionNum - 1)
     }
     
     /**
      * Get a specific level by ID.
-     * @param levelId The ID of the level
+     * @param levelId The ID of the level (format: languageId_section_N_level_M)
      * @return The level or null if not found
      */
     fun getLevelById(levelId: String): Level? {
-        return getAllLevels().find { it.id == levelId }
+        // Parse the levelId to extract sectionId and level number
+        // Format: languageId_section_N_level_M
+        val parts = levelId.split("_level_")
+        if (parts.size != 2) return null
+        
+        val sectionId = parts[0]
+        val levelNum = parts[1].toIntOrNull() ?: return null
+        
+        if (levelNum !in 1..10) return null
+        
+        return getLevelsForSection(sectionId).getOrNull(levelNum - 1)
     }
     
     /**
