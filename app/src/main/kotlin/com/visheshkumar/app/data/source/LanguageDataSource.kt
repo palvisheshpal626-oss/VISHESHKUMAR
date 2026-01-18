@@ -42,16 +42,20 @@ object LanguageDataSource {
     /**
      * Get all sections for a specific language.
      * @param languageId The ID of the language
-     * @return List of 10 sections for the language
+     * @return List of 10 sections for the language, or empty list if language doesn't exist
      */
     fun getSectionsForLanguage(languageId: String): List<Section> {
+        // Validate language exists and cache the name
+        val language = getLanguageById(languageId) ?: return emptyList()
+        val languageName = language.name
+        
         return (1..10).map { sectionNum ->
             Section(
                 id = "${languageId}_section_$sectionNum",
                 languageId = languageId,
                 sectionNumber = sectionNum,
                 title = "Section $sectionNum",
-                description = "Learn ${getLanguages().find { it.id == languageId }?.name} - Part $sectionNum"
+                description = "Learn $languageName - Part $sectionNum"
             )
         }
     }

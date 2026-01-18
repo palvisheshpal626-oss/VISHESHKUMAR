@@ -62,5 +62,16 @@ fun main() {
         println("❌ Boundary levels not accessible")
     }
     
+    println()
+    
+    // Test invalid language ID handling
+    println("Testing invalid language ID handling:")
+    val sectionsForInvalidLang = LanguageDataSource.getSectionsForLanguage("invalid_language")
+    if (sectionsForInvalidLang.isEmpty()) {
+        println("✅ Empty list returned for invalid language ID")
+    } else {
+        println("❌ Should return empty list for invalid language ID")
+    }
+    
     println("\n=== All Optimization Tests Passed ===")
 }
