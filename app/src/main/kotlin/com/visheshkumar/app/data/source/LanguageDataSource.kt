@@ -10,34 +10,38 @@ import com.visheshkumar.app.data.model.Level
  */
 object LanguageDataSource {
     
+    // Cached list of all languages
+    private val languages = listOf(
+        Language("kotlin", "Kotlin", "Modern, concise JVM language for Android & backend"),
+        Language("java", "Java", "Enterprise-grade, object-oriented programming language"),
+        Language("python", "Python", "High-level language for data science, web & automation"),
+        Language("javascript", "JavaScript", "Dynamic language for web development"),
+        Language("typescript", "TypeScript", "Typed superset of JavaScript"),
+        Language("cpp", "C++", "High-performance systems programming language"),
+        Language("c", "C", "Low-level procedural programming language"),
+        Language("csharp", "C#", "Modern language for .NET ecosystem"),
+        Language("swift", "Swift", "Apple's language for iOS & macOS development"),
+        Language("go", "Go", "Google's fast, simple concurrent programming language"),
+        Language("rust", "Rust", "Memory-safe systems programming language"),
+        Language("php", "PHP", "Server-side scripting language for web"),
+        Language("ruby", "Ruby", "Dynamic, elegant language with Rails framework"),
+        Language("dart", "Dart", "Language for Flutter cross-platform development"),
+        Language("r", "R", "Statistical computing and graphics language"),
+        Language("scala", "Scala", "Functional & object-oriented JVM language"),
+        Language("sql", "SQL", "Database query and management language"),
+        Language("html", "HTML", "Markup language for web page structure"),
+        Language("css", "CSS", "Style sheet language for web design"),
+        Language("bash", "Bash", "Unix shell scripting language")
+    )
+    
+    // Cached map for O(1) language lookups
+    private val languageMap = languages.associateBy { it.id }
+    
     /**
      * Get all available programming languages.
      * @return List of 20 programming languages
      */
-    fun getLanguages(): List<Language> {
-        return listOf(
-            Language("kotlin", "Kotlin", "Modern, concise JVM language for Android & backend"),
-            Language("java", "Java", "Enterprise-grade, object-oriented programming language"),
-            Language("python", "Python", "High-level language for data science, web & automation"),
-            Language("javascript", "JavaScript", "Dynamic language for web development"),
-            Language("typescript", "TypeScript", "Typed superset of JavaScript"),
-            Language("cpp", "C++", "High-performance systems programming language"),
-            Language("c", "C", "Low-level procedural programming language"),
-            Language("csharp", "C#", "Modern language for .NET ecosystem"),
-            Language("swift", "Swift", "Apple's language for iOS & macOS development"),
-            Language("go", "Go", "Google's fast, simple concurrent programming language"),
-            Language("rust", "Rust", "Memory-safe systems programming language"),
-            Language("php", "PHP", "Server-side scripting language for web"),
-            Language("ruby", "Ruby", "Dynamic, elegant language with Rails framework"),
-            Language("dart", "Dart", "Language for Flutter cross-platform development"),
-            Language("r", "R", "Statistical computing and graphics language"),
-            Language("scala", "Scala", "Functional & object-oriented JVM language"),
-            Language("sql", "SQL", "Database query and management language"),
-            Language("html", "HTML", "Markup language for web page structure"),
-            Language("css", "CSS", "Style sheet language for web design"),
-            Language("bash", "Bash", "Unix shell scripting language")
-        )
-    }
+    fun getLanguages(): List<Language> = languages
     
     /**
      * Get all sections for a specific language.
@@ -80,32 +84,53 @@ object LanguageDataSource {
     
     /**
      * Get all sections across all languages.
+     * Optimized to generate sections directly without redundant validations.
      * @return List of all sections (200 total: 20 languages × 10 sections)
      */
     fun getAllSections(): List<Section> {
-        return getLanguages().flatMap { language ->
-            getSectionsForLanguage(language.id)
+        return languages.flatMap { language ->
+            (1..10).map { sectionNum ->
+                Section(
+                    id = "${language.id}_section_$sectionNum",
+                    languageId = language.id,
+                    sectionNumber = sectionNum,
+                    title = "Section $sectionNum",
+                    description = "Learn ${language.name} - Part $sectionNum"
+                )
+            }
         }
     }
     
     /**
      * Get all levels across all sections.
+     * Optimized to generate levels directly without redundant validations.
      * @return List of all levels (2000 total: 200 sections × 10 levels)
      */
     fun getAllLevels(): List<Level> {
-        return getAllSections().flatMap { section ->
-            getLevelsForSection(section.id)
+        return languages.flatMap { language ->
+            (1..10).flatMap { sectionNum ->
+                val sectionId = "${language.id}_section_$sectionNum"
+                (1..10).map { levelNum ->
+                    Level(
+                        id = "${sectionId}_level_$levelNum",
+                        sectionId = sectionId,
+                        levelNumber = levelNum,
+                        title = "Level $levelNum",
+                        difficulty = getDifficultyForLevel(levelNum),
+                        isLocked = levelNum > 1
+                    )
+                }
+            }
         }
     }
     
     /**
      * Get a specific language by ID.
+     * Uses cached map for O(1) lookup.
      * @param languageId The ID of the language
      * @return The language or null if not found
      */
-    fun getLanguageById(languageId: String): Language? {
-        return getLanguages().find { it.id == languageId }
-    }
+    fun getLanguageById(languageId: String): Language? = languageMap[languageId]
     
     /**
      * Get a specific section by ID.
