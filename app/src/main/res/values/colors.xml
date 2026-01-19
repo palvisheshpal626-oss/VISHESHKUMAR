@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Brand Colors -->
+    <color name="primary">#2563EB</color>
+    <color name="primary_dark">#1E40AF</color>
+    <color name="primary_light">#60A5FA</color>
+    <color name="primary_variant">#3B82F6</color>
+    
+    <!-- Secondary/Accent Colors -->
+    <color name="secondary">#8B5CF6</color>
+    <color name="secondary_dark">#7C3AED</color>
+    <color name="secondary_light">#A78BFA</color>
+    <color name="secondary_variant">#9333EA</color>
+    
+    <!-- Background Colors -->
+    <color name="background">#F8FAFC</color>
+    <color name="background_secondary">#F1F5F9</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_variant">#F8FAFC</color>
+    
+    <!-- Text Colors -->
+    <color name="text_primary">#0F172A</color>
+    <color name="text_secondary">#64748B</color>
+    <color name="text_tertiary">#94A3B8</color>
+    <color name="text_on_primary">#FFFFFF</color>
+    <color name="text_on_secondary">#FFFFFF</color>
+    
+    <!-- Status Colors -->
+    <color name="success">#10B981</color>
+    <color name="success_light">#34D399</color>
+    <color name="warning">#F59E0B</color>
+    <color name="warning_light">#FBBF24</color>
+    <color name="error">#EF4444</color>
+    <color name="error_light">#F87171</color>
+    <color name="info">#06B6D4</color>
+    <color name="info_light">#22D3EE</color>
+    
+    <!-- Difficulty Level Colors -->
+    <color name="difficulty_easy">#10B981</color>
+    <color name="difficulty_medium">#F59E0B</color>
+    <color name="difficulty_hard">#EF4444</color>
+    
+    <!-- Card & Elevation -->
+    <color name="card_background">#FFFFFF</color>
+    <color name="card_stroke">#E2E8F0</color>
+    <color name="divider">#E2E8F0</color>
+    
+    <!-- Interactive States -->
+    <color name="ripple_light">#1A000000</color>
+    <color name="ripple_dark">#1AFFFFFF</color>
+    <color name="overlay_light">#0D000000</color>
+    <color name="overlay_dark">#0DFFFFFF</color>
+    
+    <!-- Lock/Unlock States -->
+    <color name="locked">#94A3B8</color>
+    <color name="unlocked">#10B981</color>
+    
+    <!-- Transparent -->
+    <color name="transparent">#00000000</color>
+    
+    <!-- Black & White -->
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+</resources>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VISHESHKUMAR App - UI Design Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #F8FAFC;
+            padding: 40px 20px;
+            color: #0F172A;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            color: #64748B;
+            margin-bottom: 40px;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+        
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .color-swatch {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #E2E8F0;
+        }
+        
+        .color-preview {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 500;
+        }
+        
+        .color-info {
+            padding: 12px;
+            background: #F8FAFC;
+        }
+        
+        .color-name {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        
+        .color-hex {
+            font-size: 12px;
+            color: #64748B;
+            font-family: monospace;
+        }
+        
+        .component-preview {
+            margin-bottom: 24px;
+        }
+        
+        .button {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            margin-right: 12px;
+            margin-bottom: 12px;
+            min-height: 48px;
+        }
+        
+        .button-primary {
+            background: #2563EB;
+            color: white;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .button-outlined {
+            background: transparent;
+            color: #2563EB;
+            border: 1px solid #2563EB;
+        }
+        
+        .button-text {
+            background: transparent;
+            color: #2563EB;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 16px;
+        }
+        
+        .card-language {
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        
+        .card-subtitle {
+            font-size: 14px;
+            color: #64748B;
+        }
+        
+        .chip {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .chip-easy { background: #D1FAE5; color: #065F46; }
+        .chip-medium { background: #FEF3C7; color: #92400E; }
+        .chip-hard { background: #FEE2E2; color: #991B1B; }
+        
+        .progress-bar {
+            height: 8px;
+            background: #F1F5F9;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #2563EB;
+            transition: width 0.3s ease;
+        }
+        
+        .typography-example {
+            margin-bottom: 16px;
+        }
+        
+        .headline1 { font-size: 32px; font-weight: 500; letter-spacing: -0.01em; }
+        .headline2 { font-size: 24px; font-weight: 500; letter-spacing: -0.005em; }
+        .headline3 { font-size: 20px; font-weight: 500; }
+        .body1 { font-size: 16px; line-height: 1.5; }
+        .body2 { font-size: 14px; color: #64748B; line-height: 1.4; }
+        .caption { font-size: 12px; color: #94A3B8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>VISHESHKUMAR App</h1>
+        <p class="subtitle">UI Design System Preview - Phase 2</p>
+        
+        <!-- Color Palette -->
+        <div class="section">
+            <h2>🎨 Primary Colors</h2>
+            <div class="color-grid">
+                <div class="color-swatch">
+                    <div class="color-preview" style="background: #2563EB;">Primary</div>
+                    <div class="color-info">
+                        <div class="color-name">Primary</div>
+                        <div class="color-hex">#2563EB</div>
+                    </div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-preview" style="background: #8B5CF6;">Secondary</div>
+                    <div class="color-info">
+                        <div class="color-name">Secondary</div>
+                        <div class="color-hex">#8B5CF6</div>
+                    </div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-preview" style="background: #10B981;">Success</div>
+                    <div class="color-info">
+                        <div class="color-name">Success</div>
+                        <div class="color-hex">#10B981</div>
+                    </div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-preview" style="background: #F59E0B;">Warning</div>
+                    <div class="color-info">
+                        <div class="color-name">Warning</div>
+                        <div class="color-hex">#F59E0B</div>
+                    </div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-preview" style="background: #EF4444;">Error</div>
+                    <div class="color-info">
+                        <div class="color-name">Error</div>
+                        <div class="color-hex">#EF4444</div>
+                    </div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-preview" style="background: #06B6D4;">Info</div>
+                    <div class="color-info">
+                        <div class="color-name">Info</div>
+                        <div class="color-hex">#06B6D4</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Typography -->
+        <div class="section">
+            <h2>📝 Typography</h2>
+            <div class="typography-example headline1">Headline 1 - 32sp Medium</div>
+            <div class="typography-example headline2">Headline 2 - 24sp Medium</div>
+            <div class="typography-example headline3">Headline 3 - 20sp Medium</div>
+            <div class="typography-example body1">Body 1 - 16sp Regular with proper line spacing for comfortable reading</div>
+            <div class="typography-example body2">Body 2 - 14sp Regular for secondary text content</div>
+            <div class="typography-example caption">Caption - 12sp Regular for small text</div>
+        </div>
+        
+        <!-- Buttons -->
+        <div class="section">
+            <h2>🔘 Buttons</h2>
+            <div class="component-preview">
+                <button class="button button-primary">Start Learning</button>
+                <button class="button button-outlined">Continue</button>
+                <button class="button button-text">Skip</button>
+            </div>
+        </div>
+        
+        <!-- Cards -->
+        <div class="section">
+            <h2>🃏 Cards</h2>
+            <div class="component-preview">
+                <div class="card card-language">
+                    <div class="card-title">🔷 Kotlin</div>
+                    <div class="card-subtitle">Modern, concise JVM language for Android & backend</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 80%;"></div>
+                    </div>
+                </div>
+                <div class="card card-language">
+                    <div class="card-title">☕ Java</div>
+                    <div class="card-subtitle">Enterprise-grade, object-oriented programming language</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 35%;"></div>
+                    </div>
+                </div>
+                <div class="card card-language">
+                    <div class="card-title">🐍 Python</div>
+                    <div class="card-subtitle">High-level language for data science, web & automation</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Chips -->
+        <div class="section">
+            <h2>🏷️ Difficulty Chips</h2>
+            <div class="component-preview">
+                <span class="chip chip-easy">Easy</span>
+                <span class="chip chip-medium">Medium</span>
+                <span class="chip chip-hard">Hard</span>
+            </div>
+        </div>
+        
+        <!-- Design Principles -->
+        <div class="section">
+            <h2>✨ Design Principles</h2>
+            <div class="body1">
+                <p style="margin-bottom: 12px;"><strong>Clean & Modern:</strong> Generous white space, soft shadows, rounded corners</p>
+                <p style="margin-bottom: 12px;"><strong>Good Contrast:</strong> WCAG AA compliant, clear hierarchy, proper color combinations</p>
+                <p style="margin-bottom: 12px;"><strong>Premium Feel:</strong> Polished palette, smooth gradients, professional typography</p>
+                <p><strong>Consistency:</strong> Unified spacing (8dp/16dp/24dp), consistent corners, standardized components</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

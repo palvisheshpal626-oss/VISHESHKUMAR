@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ Screen Preview - VISHESHKUMAR</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #F8FAFC;
+            padding: 20px;
+            color: #0F172A;
+        }
+        
+        .phone-frame {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            padding: 16px;
+            overflow: hidden;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            font-size: 14px;
+            color: #64748B;
+        }
+        
+        .progress-text {
+            text-align: center;
+            font-size: 14px;
+            color: #64748B;
+            margin-bottom: 8px;
+        }
+        
+        .progress-bar-container {
+            background: #F1F5F9;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+        
+        .progress-bar-fill {
+            background: #2563EB;
+            height: 100%;
+            width: 20%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
+        .question-card {
+            background: white;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .question-text {
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+        
+        .option-card {
+            background: white;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .option-card:hover {
+            border-color: #2563EB;
+            box-shadow: 0 2px 4px rgba(37, 99, 235, 0.1);
+        }
+        
+        .option-card.selected {
+            border-color: #2563EB;
+            border-width: 2px;
+            background: #EFF6FF;
+        }
+        
+        .option-card.correct {
+            background: #D1FAE5;
+            border-color: #10B981;
+        }
+        
+        .option-card.incorrect {
+            background: #FEE2E2;
+            border-color: #EF4444;
+        }
+        
+        .option-text {
+            font-size: 16px;
+        }
+        
+        .explanation-card {
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            display: none;
+        }
+        
+        .explanation-card.show {
+            display: block;
+        }
+        
+        .explanation-title {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        
+        .explanation-text {
+            font-size: 14px;
+            color: #64748B;
+            line-height: 1.5;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        
+        .button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .button-primary {
+            background: #2563EB;
+            color: white;
+        }
+        
+        .button-primary:hover {
+            background: #1E40AF;
+        }
+        
+        .button-primary:disabled {
+            background: #94A3B8;
+            cursor: not-allowed;
+        }
+        
+        .button-secondary {
+            background: transparent;
+            color: #2563EB;
+            border: 1px solid #2563EB;
+        }
+        
+        .button-secondary:hover {
+            background: #EFF6FF;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+        
+        .badge-placeholder {
+            background: #FEF3C7;
+            color: #92400E;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-frame">
+        <div class="header">
+            <h1>MCQ Screen</h1>
+            <p class="subtitle">Phase 3: Placeholder System</p>
+        </div>
+        
+        <span class="badge badge-placeholder">Placeholder Question</span>
+        
+        <div class="progress-text">Question 1 of 5</div>
+        
+        <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="progressBar"></div>
+        </div>
+        
+        <div class="question-card">
+            <div class="question-text" id="questionText">Question will be added later</div>
+        </div>
+        
+        <div id="optionsContainer">
+            <div class="option-card" data-index="0">
+                <div class="option-text">Option A will be added later</div>
+            </div>
+            
+            <div class="option-card" data-index="1">
+                <div class="option-text">Option B will be added later</div>
+            </div>
+            
+            <div class="option-card" data-index="2">
+                <div class="option-text">Option C will be added later</div>
+            </div>
+            
+            <div class="option-card" data-index="3">
+                <div class="option-text">Option D will be added later</div>
+            </div>
+        </div>
+        
+        <div class="explanation-card" id="explanationCard">
+            <div class="explanation-title">Explanation</div>
+            <div class="explanation-text">Explanation will be added later</div>
+        </div>
+        
+        <div class="button-container">
+            <button class="button button-primary" id="submitButton" disabled>Submit Answer</button>
+            <button class="button button-primary hidden" id="nextButton">Next Question</button>
+        </div>
+    </div>
+    
+    <script>
+        let selectedIndex = null;
+        let isSubmitted = false;
+        let currentQuestion = 1;
+        const totalQuestions = 5;
+        
+        const options = document.querySelectorAll('.option-card');
+        const submitButton = document.getElementById('submitButton');
+        const nextButton = document.getElementById('nextButton');
+        const explanationCard = document.getElementById('explanationCard');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.querySelector('.progress-text');
+        
+        options.forEach(option => {
+            option.addEventListener('click', () => {
+                if (isSubmitted) return;
+                
+                options.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                selectedIndex = parseInt(option.dataset.index);
+                submitButton.disabled = false;
+            });
+        });
+        
+        submitButton.addEventListener('click', () => {
+            if (selectedIndex === null) return;
+            
+            isSubmitted = true;
+            
+            // Show correct/incorrect
+            options.forEach((option, index) => {
+                if (index === 0) {
+                    option.classList.add('correct');
+                } else if (index === selectedIndex) {
+                    option.classList.add('incorrect');
+                }
+            });
+            
+            // Show explanation
+            explanationCard.classList.add('show');
+            
+            // Switch buttons
+            submitButton.classList.add('hidden');
+            nextButton.classList.remove('hidden');
+        });
+        
+        nextButton.addEventListener('click', () => {
+            if (currentQuestion < totalQuestions) {
+                currentQuestion++;
+                resetQuestion();
+                updateProgress();
+            } else {
+                alert('Quiz Complete!');
+            }
+        });
+        
+        function resetQuestion() {
+            options.forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+            });
+            explanationCard.classList.remove('show');
+            submitButton.classList.remove('hidden');
+            submitButton.disabled = true;
+            nextButton.classList.add('hidden');
+            selectedIndex = null;
+            isSubmitted = false;
+        }
+        
+        function updateProgress() {
+            progressText.textContent = `Question ${currentQuestion} of ${totalQuestions}`;
+            const percentage = (currentQuestion / totalQuestions) * 100;
+            progressBar.style.width = percentage + '%';
+        }
+    </script>
+</body>
+</html>

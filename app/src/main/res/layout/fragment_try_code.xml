@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/languageText"
+                style="@style/TextAppearance.Headline3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Try Code"
+                android:textColor="@color/text_primary" />
+
+            <TextView
+                android:id="@+id/executionStatusText"
+                style="@style/TextAppearance.Body2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="✓ Real execution supported"
+                android:textColor="@color/success" />
+        </LinearLayout>
+
+        <!-- Code Editor Card -->
+        <com.google.android.material.card.MaterialCardView
+            style="@style/CardStyle.Large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    style="@style/TextAppearance.Body1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Code Editor"
+                    android:textColor="@color/text_primary"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp" />
+
+                <EditText
+                    android:id="@+id/codeEditor"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:gravity="start|top"
+                    android:inputType="textMultiLine"
+                    android:hint="Write your code here..."
+                    android:background="@color/background"
+                    android:padding="12dp"
+                    android:fontFamily="monospace"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_primary"
+                    android:textColorHint="@color/text_tertiary"
+                    android:scrollbars="vertical" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Standard Input Card (Optional) -->
+        <com.google.android.material.card.MaterialCardView
+            style="@style/CardStyle.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    style="@style/TextAppearance.Body2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Standard Input (Optional)"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginBottom="8dp" />
+
+                <EditText
+                    android:id="@+id/stdinEditor"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:gravity="start|top"
+                    android:inputType="textMultiLine"
+                    android:hint="Input for your program..."
+                    android:background="@color/background"
+                    android:padding="12dp"
+                    android:fontFamily="monospace"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_primary"
+                    android:textColorHint="@color/text_tertiary" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Action Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/resetButton"
+                style="@style/ButtonStyle.Outlined"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reset"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/clearButton"
+                style="@style/ButtonStyle.Outlined"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Clear Output"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/runButton"
+                style="@style/ButtonStyle.Primary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="▶ Run Code" />
+        </LinearLayout>
+
+        <!-- Progress Bar -->
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Output Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/outputCard"
+            style="@style/CardStyle.Large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    style="@style/TextAppearance.Body1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Output"
+                    android:textColor="@color/text_primary"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:id="@+id/outputText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="100dp"
+                    android:text=""
+                    android:fontFamily="monospace"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_primary"
+                    android:background="@color/background"
+                    android:padding="12dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</ScrollView>
