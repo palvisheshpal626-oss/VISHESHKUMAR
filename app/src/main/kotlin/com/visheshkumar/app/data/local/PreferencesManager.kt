@@ -34,6 +34,9 @@ class PreferencesManager(context: Context) {
         private const val KEY_AD_WATCHED = "ad_watched"
         private const val KEY_STAR_PREFIX = "stars_" // Prefix for star storage: stars_levelId
         private const val KEY_SECTION_UNLOCKED_PREFIX = "section_unlocked_" // section_unlocked_sectionId
+        private const val KEY_USERNAME = "username"
+        private const val KEY_JOIN_DATE = "join_date"
+        private const val KEY_LAST_ACTIVE_DATE = "last_active_date"
         
         // Coin rules
         const val COINS_FOR_CORRECT_ANSWER = 10
@@ -350,5 +353,61 @@ class PreferencesManager(context: Context) {
             stars == StarResult.STARS_SLOW -> "⭐☆☆"
             else -> "☆☆☆"
         }
+    }
+    
+    // ========== PROFILE SYSTEM METHODS (Phase 8) ==========
+    
+    /**
+     * Get username
+     * 
+     * @return Username or null if not set
+     */
+    fun getUsername(): String? {
+        return prefs.getString(KEY_USERNAME, null)
+    }
+    
+    /**
+     * Save username
+     * 
+     * @param username The username to save
+     */
+    fun saveUsername(username: String) {
+        prefs.edit().putString(KEY_USERNAME, username).apply()
+    }
+    
+    /**
+     * Get join date (when user first started using the app)
+     * 
+     * @return Join date timestamp in milliseconds
+     */
+    fun getJoinDate(): Long {
+        val joinDate = prefs.getLong(KEY_JOIN_DATE, 0L)
+        
+        // If not set, set it now
+        if (joinDate == 0L) {
+            val now = System.currentTimeMillis()
+            prefs.edit().putLong(KEY_JOIN_DATE, now).apply()
+            return now
+        }
+        
+        return joinDate
+    }
+    
+    /**
+     * Update last active date
+     * 
+     * @param timestamp The timestamp in milliseconds
+     */
+    fun updateLastActiveDate(timestamp: Long) {
+        prefs.edit().putLong(KEY_LAST_ACTIVE_DATE, timestamp).apply()
+    }
+    
+    /**
+     * Get last active date
+     * 
+     * @return Last active date timestamp in milliseconds
+     */
+    fun getLastActiveDate(): Long {
+        return prefs.getLong(KEY_LAST_ACTIVE_DATE, System.currentTimeMillis())
     }
 }
