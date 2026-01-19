@@ -8,6 +8,18 @@
     android:background="?attr/colorSurface"
     android:padding="16dp">
     
+    <!-- Coin Display -->
+    <TextView
+        android:id="@+id/coinText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.VISHESHKUMAR.Headline3"
+        android:text="💰 100 coins"
+        android:textColor="@color/primary"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
+    
     <!-- Progress Indicator -->
     <TextView
         android:id="@+id/progressText"
@@ -17,7 +29,6 @@
         android:text="Question 1 of 5"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp"/>
     
     <!-- Progress Bar -->
@@ -182,7 +193,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="end"
+        android:gravity="space_between"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -190,21 +201,35 @@
         android:layout_marginBottom="16dp">
         
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/submitButton"
-            style="@style/Widget.VISHESHKUMAR.Button"
+            android:id="@+id/hintButton"
+            style="@style/Widget.VISHESHKUMAR.Button.Outlined"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Submit Answer"
-            android:enabled="false"/>
+            android:text="💡 Hint (25)"
+            android:textSize="12sp"/>
         
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/nextButton"
-            style="@style/Widget.VISHESHKUMAR.Button"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Next Question"
-            android:visibility="gone"
-            android:layout_marginStart="12dp"/>
+            android:orientation="horizontal">
+            
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/submitButton"
+                style="@style/Widget.VISHESHKUMAR.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Submit Answer"
+                android:enabled="false"/>
+            
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/nextButton"
+                style="@style/Widget.VISHESHKUMAR.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Next Question"
+                android:visibility="gone"
+                android:layout_marginStart="12dp"/>
+        </LinearLayout>
     </LinearLayout>
     
 </androidx.constraintlayout.widget.ConstraintLayout>

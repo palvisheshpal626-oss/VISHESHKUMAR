@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -12,19 +13,22 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.visheshkumar.app.R
+import com.visheshkumar.app.data.local.PreferencesManager
 import com.visheshkumar.app.data.model.MCQ
 
 /**
  * Fragment for displaying and interacting with MCQs.
  * 
  * Phase 3: Shows placeholder MCQs with basic interaction.
- * Future: Will include scoring, timer, hints, and result tracking.
+ * Phase 4: Implements coin system with strict rules to prevent guessing.
  */
 class MCQFragment : Fragment() {
     
     private val viewModel: MCQViewModel by viewModels()
+    private lateinit var preferencesManager: PreferencesManager
     
     // UI Components
+    private lateinit var coinText: TextView
     private lateinit var progressText: TextView
     private lateinit var progressBar: LinearProgressIndicator
     private lateinit var questionText: TextView
@@ -34,6 +38,7 @@ class MCQFragment : Fragment() {
     private lateinit var explanationText: TextView
     private lateinit var submitButton: MaterialButton
     private lateinit var nextButton: MaterialButton
+    private lateinit var hintButton: MaterialButton
     
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,6 +51,9 @@ class MCQFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         
+        // Initialize PreferencesManager
+        preferencesManager = PreferencesManager(requireContext())
+        
         // Initialize UI components
         initializeViews(view)
         
@@ -54,6 +62,12 @@ class MCQFragment : Fragment() {
         
         // Observe ViewModel
         observeViewModel()
+        
+        // Update coin display
+        updateCoinDisplay()
+        
+        // Check if user can continue
+        checkCoinRequirement()
         
         // Load MCQs for a test level (e.g., kotlin_section_1_level_1)
         // In real implementation, this would come from navigation arguments
@@ -65,6 +79,7 @@ class MCQFragment : Fragment() {
      * Initialize all view references.
      */
     private fun initializeViews(view: View) {
+        coinText = view.findViewById(R.id.coinText)
         progressText = view.findViewById(R.id.progressText)
         progressBar = view.findViewById(R.id.progressBar)
         questionText = view.findViewById(R.id.questionText)
@@ -86,6 +101,7 @@ class MCQFragment : Fragment() {
         
         submitButton = view.findViewById(R.id.submitButton)
         nextButton = view.findViewById(R.id.nextButton)
+        hintButton = view.findViewById(R.id.hintButton)
     }
     
     /**
@@ -102,7 +118,7 @@ class MCQFragment : Fragment() {
         // Submit button
         submitButton.setOnClickListener {
             val isCorrect = viewModel.submitAnswer()
-            showAnswerResult(isCorrect)
+            handleAnswerSubmission(isCorrect)
         }
         
         // Next button
@@ -112,6 +128,11 @@ class MCQFragment : Fragment() {
                 // Quiz completed
                 showQuizComplete()
             }
+        }
+        
+        // Hint button
+        hintButton.setOnClickListener {
+            useHint()
         }
     }
     
@@ -253,12 +274,128 @@ class MCQFragment : Fragment() {
         
         // In a real implementation, this would navigate to a results screen
         // For now, just show a placeholder message
-        questionText.text = "Quiz Complete!\n\nScore: $correctCount / $totalCount"
+        questionText.text = "Quiz Complete!\n\nScore: $correctCount / $totalCount\nCoins: ${preferencesManager.getCoins()}"
         
         // Hide options and buttons
         optionCards.forEach { it.visibility = View.GONE }
         submitButton.visibility = View.GONE
         nextButton.visibility = View.GONE
+        hintButton.visibility = View.GONE
+    }
+    
+    /**
+     * Handle answer submission with coin system.
+     * Phase 4: Correct +10 coins, Wrong -20 coins.
+     */
+    private fun handleAnswerSubmission(isCorrect: Boolean) {
+        val selectedIndex = viewModel.selectedAnswerIndex.value ?: return
+        val currentMCQ = viewModel.currentMCQ.value ?: return
+        
+        // Apply coin rules
+        val newCoins = if (isCorrect) {
+            val coins = preferencesManager.addCoinsForCorrectAnswer()
+            showMessage("Correct! +${PreferencesManager.COINS_FOR_CORRECT_ANSWER} coins")
+            coins
+        } else {
+            val coins = preferencesManager.deductCoinsForWrongAnswer()
+            val deducted = preferencesManager.getCoins() + PreferencesManager.COINS_DEDUCTED_FOR_WRONG_ANSWER - coins
+            showMessage("Wrong! -$deducted coins")
+            coins
+        }
+        
+        // Update coin display
+        updateCoinDisplay()
+        
+        // Show answer result
+        showAnswerResult(isCorrect)
+        
+        // Check if user has enough coins to continue
+        if (!preferencesManager.hasEnoughCoinsToC ontinue() && !preferencesManager.hasWatchedAd()) {
+            showLowCoinsWarning()
+        }
+    }
+    
+    /**
+     * Update coin display.
+     */
+    private fun updateCoinDisplay() {
+        coinText.text = "💰 ${preferencesManager.getCoins()} coins"
+        
+        // Update hint button state
+        hintButton.isEnabled = preferencesManager.hasEnoughCoinsForHint()
+        hintButton.alpha = if (hintButton.isEnabled) 1.0f else 0.5f
+    }
+    
+    /**
+     * Check coin requirement before allowing quiz to continue.
+     */
+    private fun checkCoinRequirement() {
+        if (preferencesManager.needsToWatchAd()) {
+            showAdRequiredDialog()
+        }
+    }
+    
+    /**
+     * Show warning when coins are low.
+     */
+    private fun showLowCoinsWarning() {
+        if (preferencesManager.getCoins() < PreferencesManager.MINIMUM_COINS_TO_CONTINUE) {
+            showMessage("Warning: You need at least ${PreferencesManager.MINIMUM_COINS_TO_CONTINUE} coins to continue. Watch an ad to proceed!")
+        }
+    }
+    
+    /**
+     * Show dialog when ad is required to continue.
+     */
+    private fun showAdRequiredDialog() {
+        // In real implementation, this would show a proper dialog
+        // For Phase 4, we'll show a message
+        Toast.makeText(
+            requireContext(),
+            "You need at least ${PreferencesManager.MINIMUM_COINS_TO_CONTINUE} coins to continue. Please watch a rewarded ad.",
+            Toast.LENGTH_LONG
+        ).show()
+        
+        // Simulate ad watched for testing purposes
+        // In production, this would be triggered after actual ad is watched
+        // preferencesManager.markAdWatched()
+    }
+    
+    /**
+     * Use a hint (costs 25 coins).
+     */
+    private fun useHint() {
+        val newCoins = preferencesManager.useHint()
+        
+        if (newCoins == -1) {
+            showMessage("Not enough coins! Hint costs ${PreferencesManager.HINT_COST} coins.")
+            return
+        }
+        
+        // Show hint: Remove one wrong answer
+        val currentMCQ = viewModel.currentMCQ.value
+        if (currentMCQ != null) {
+            // Find a wrong answer to eliminate
+            val correctIndex = currentMCQ.correctAnswerIndex
+            val wrongIndices = optionCards.indices.filter { it != correctIndex }
+            
+            if (wrongIndices.isNotEmpty()) {
+                // Eliminate first wrong answer
+                val indexToEliminate = wrongIndices.first()
+                optionCards[indexToEliminate].alpha = 0.3f
+                optionCards[indexToEliminate].isEnabled = false
+                
+                showMessage("Hint used! -${PreferencesManager.HINT_COST} coins. One wrong answer eliminated.")
+                updateCoinDisplay()
+            }
+        }
+    }
+    
+    /**
+     * Show a toast message.
+     */
+    private fun showMessage(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
     
     companion object {
