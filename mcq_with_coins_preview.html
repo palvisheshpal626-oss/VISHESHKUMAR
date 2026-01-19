@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ Screen with Coins - Phase 4</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #F8FAFC;
+            padding: 20px;
+            color: #0F172A;
+        }
+        
+        .phone-frame {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            padding: 16px;
+            overflow: hidden;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            font-size: 14px;
+            color: #64748B;
+        }
+        
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .progress-text {
+            font-size: 14px;
+            color: #64748B;
+        }
+        
+        .coin-display {
+            font-size: 18px;
+            font-weight: 500;
+            color: #2563EB;
+        }
+        
+        .progress-bar-container {
+            background: #F1F5F9;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+        
+        .progress-bar-fill {
+            background: #2563EB;
+            height: 100%;
+            width: 20%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
+        .question-card {
+            background: white;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .question-text {
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+        
+        .option-card {
+            background: white;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .option-card:hover {
+            border-color: #2563EB;
+            box-shadow: 0 2px 4px rgba(37, 99, 235, 0.1);
+        }
+        
+        .option-card.selected {
+            border-color: #2563EB;
+            border-width: 2px;
+            background: #EFF6FF;
+        }
+        
+        .option-card.correct {
+            background: #D1FAE5;
+            border-color: #10B981;
+        }
+        
+        .option-card.incorrect {
+            background: #FEE2E2;
+            border-color: #EF4444;
+        }
+        
+        .option-card.eliminated {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        
+        .option-text {
+            font-size: 16px;
+        }
+        
+        .explanation-card {
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            display: none;
+        }
+        
+        .explanation-card.show {
+            display: block;
+        }
+        
+        .explanation-title {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        
+        .explanation-text {
+            font-size: 14px;
+            color: #64748B;
+            line-height: 1.5;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        
+        .button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .button-primary {
+            background: #2563EB;
+            color: white;
+        }
+        
+        .button-primary:hover {
+            background: #1E40AF;
+        }
+        
+        .button-primary:disabled {
+            background: #94A3B8;
+            cursor: not-allowed;
+        }
+        
+        .button-outlined {
+            background: transparent;
+            color: #2563EB;
+            border: 1px solid #2563EB;
+        }
+        
+        .button-outlined:hover {
+            background: #EFF6FF;
+        }
+        
+        .button-outlined:disabled {
+            color: #94A3B8;
+            border-color: #94A3B8;
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+        
+        .badge-placeholder {
+            background: #FEF3C7;
+            color: #92400E;
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #0F172A;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .toast.show {
+            opacity: 1;
+        }
+        
+        .right-buttons {
+            display: flex;
+            gap: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-frame">
+        <div class="header">
+            <h1>MCQ Screen</h1>
+            <p class="subtitle">Phase 4: Coin & Hint System</p>
+        </div>
+        
+        <div class="top-bar">
+            <div class="progress-text">Question 1 of 5</div>
+            <div class="coin-display" id="coinDisplay">💰 100 coins</div>
+        </div>
+        
+        <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="progressBar"></div>
+        </div>
+        
+        <span class="badge badge-placeholder">Placeholder Question</span>
+        
+        <div class="question-card">
+            <div class="question-text" id="questionText">Question will be added later</div>
+        </div>
+        
+        <div id="optionsContainer">
+            <div class="option-card" data-index="0">
+                <div class="option-text">Option A will be added later</div>
+            </div>
+            
+            <div class="option-card" data-index="1">
+                <div class="option-text">Option B will be added later</div>
+            </div>
+            
+            <div class="option-card" data-index="2">
+                <div class="option-text">Option C will be added later</div>
+            </div>
+            
+            <div class="option-card" data-index="3">
+                <div class="option-text">Option D will be added later</div>
+            </div>
+        </div>
+        
+        <div class="explanation-card" id="explanationCard">
+            <div class="explanation-title">Explanation</div>
+            <div class="explanation-text">Explanation will be added later</div>
+        </div>
+        
+        <div class="button-container">
+            <button class="button button-outlined" id="hintButton">💡 Hint (25)</button>
+            <div class="right-buttons">
+                <button class="button button-primary" id="submitButton" disabled>Submit Answer</button>
+                <button class="button button-primary hidden" id="nextButton">Next Question</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="toast" id="toast"></div>
+    
+    <script>
+        let selectedIndex = null;
+        let isSubmitted = false;
+        let currentQuestion = 1;
+        const totalQuestions = 5;
+        let coins = 100;
+        let hintUsed = false;
+        
+        const options = document.querySelectorAll('.option-card');
+        const submitButton = document.getElementById('submitButton');
+        const nextButton = document.getElementById('nextButton');
+        const hintButton = document.getElementById('hintButton');
+        const explanationCard = document.getElementById('explanationCard');
+        const progressBar = document.getElementById('progressBar');
+        const coinDisplay = document.getElementById('coinDisplay');
+        const toast = document.getElementById('toast');
+        
+        function updateCoinDisplay() {
+            coinDisplay.textContent = `💰 ${coins} coins`;
+            hintButton.disabled = coins < 25;
+        }
+        
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+        
+        options.forEach(option => {
+            option.addEventListener('click', () => {
+                if (isSubmitted || option.classList.contains('eliminated')) return;
+                
+                options.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                selectedIndex = parseInt(option.dataset.index);
+                submitButton.disabled = false;
+            });
+        });
+        
+        submitButton.addEventListener('click', () => {
+            if (selectedIndex === null) return;
+            
+            isSubmitted = true;
+            const isCorrect = selectedIndex === 0;
+            
+            // Update coins
+            if (isCorrect) {
+                coins += 10;
+                showToast('Correct! +10 coins');
+            } else {
+                const oldCoins = coins;
+                coins = Math.max(0, coins - 20);
+                const deducted = oldCoins - coins;
+                showToast(`Wrong! -${deducted} coins`);
+            }
+            
+            updateCoinDisplay();
+            
+            // Show correct/incorrect
+            options.forEach((option, index) => {
+                if (index === 0) {
+                    option.classList.add('correct');
+                } else if (index === selectedIndex) {
+                    option.classList.add('incorrect');
+                }
+            });
+            
+            // Show explanation
+            explanationCard.classList.add('show');
+            
+            // Switch buttons
+            submitButton.classList.add('hidden');
+            nextButton.classList.remove('hidden');
+            hintButton.disabled = true;
+            
+            // Check low coins
+            if (coins < 20 && coins > 0) {
+                setTimeout(() => {
+                    showToast('Warning: You need at least 20 coins to continue!');
+                }, 2500);
+            } else if (coins === 0) {
+                setTimeout(() => {
+                    showToast('Watch an ad to continue!');
+                }, 2500);
+            }
+        });
+        
+        nextButton.addEventListener('click', () => {
+            if (currentQuestion < totalQuestions) {
+                currentQuestion++;
+                resetQuestion();
+                updateProgress();
+            } else {
+                alert(`Quiz Complete! Final coins: ${coins}`);
+            }
+        });
+        
+        hintButton.addEventListener('click', () => {
+            if (coins < 25) {
+                showToast('Not enough coins! Hint costs 25 coins.');
+                return;
+            }
+            
+            if (hintUsed) {
+                showToast('Hint already used for this question!');
+                return;
+            }
+            
+            coins -= 25;
+            updateCoinDisplay();
+            showToast('Hint used! -25 coins. One wrong answer eliminated.');
+            
+            // Eliminate first wrong answer (Option B)
+            options[1].classList.add('eliminated');
+            hintUsed = true;
+        });
+        
+        function resetQuestion() {
+            options.forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect', 'eliminated');
+            });
+            explanationCard.classList.remove('show');
+            submitButton.classList.remove('hidden');
+            submitButton.disabled = true;
+            nextButton.classList.add('hidden');
+            hintButton.disabled = coins < 25;
+            selectedIndex = null;
+            isSubmitted = false;
+            hintUsed = false;
+        }
+        
+        function updateProgress() {
+            document.querySelector('.progress-text').textContent = `Question ${currentQuestion} of ${totalQuestions}`;
+            const percentage = (currentQuestion / totalQuestions) * 100;
+            progressBar.style.width = percentage + '%';
+        }
+        
+        updateCoinDisplay();
+    </script>
+</body>
+</html>
