@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../core/widgets/bottom_nav.dart';
 import '../core/providers/app_state_provider.dart';
+import '../core/widgets/animated_card.dart';
 
 class ChoosePathScreen extends StatelessWidget {
   const ChoosePathScreen({super.key});
@@ -62,29 +63,41 @@ class ChoosePathScreen extends StatelessWidget {
                   mainAxisSpacing: 16,
                   childAspectRatio: 0.85,
                   children: [
-                    _LanguageCard(
-                      icon: Icons.language,
-                      name: 'Python',
-                      description: 'Great for beginners',
+                    AnimatedCard(
+                      delay: 0,
                       onTap: () => _selectLanguage(context, 'Python'),
+                      child: _LanguageCard(
+                        icon: Icons.language,
+                        name: 'Python',
+                        description: 'Great for beginners',
+                      ),
                     ),
-                    _LanguageCard(
-                      icon: Icons.code,
-                      name: 'JavaScript',
-                      description: 'Build web apps',
+                    AnimatedCard(
+                      delay: 100,
                       onTap: () => _selectLanguage(context, 'JavaScript'),
+                      child: _LanguageCard(
+                        icon: Icons.code,
+                        name: 'JavaScript',
+                        description: 'Build web apps',
+                      ),
                     ),
-                    _LanguageCard(
-                      icon: Icons.android,
-                      name: 'Java',
-                      description: 'Enterprise & Android',
+                    AnimatedCard(
+                      delay: 200,
                       onTap: () => _selectLanguage(context, 'Java'),
+                      child: _LanguageCard(
+                        icon: Icons.android,
+                        name: 'Java',
+                        description: 'Enterprise & Android',
+                      ),
                     ),
-                    _LanguageCard(
-                      icon: Icons.speed,
-                      name: 'C++',
-                      description: 'High performance',
+                    AnimatedCard(
+                      delay: 300,
                       onTap: () => _selectLanguage(context, 'C++'),
+                      child: _LanguageCard(
+                        icon: Icons.speed,
+                        name: 'C++',
+                        description: 'High performance',
+                      ),
                     ),
                   ],
                 ),
@@ -101,13 +114,11 @@ class _LanguageCard extends StatelessWidget {
   final IconData icon;
   final String name;
   final String description;
-  final VoidCallback onTap;
 
   const _LanguageCard({
     required this.icon,
     required this.name,
     required this.description,
-    required this.onTap,
   });
 
   @override
@@ -117,47 +128,43 @@ class _LanguageCard extends StatelessWidget {
         ? Theme.of(context).cardTheme.color ?? const Color(0xFF1A2332)
         : Colors.white;
 
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(16),
-      child: Container(
-        decoration: BoxDecoration(
-          color: cardColor,
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(isDark ? 0.3 : 0.1),
-              blurRadius: 8,
-              offset: const Offset(0, 4),
+    return Container(
+      decoration: BoxDecoration(
+        color: cardColor,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(isDark ? 0.3 : 0.1),
+            blurRadius: 8,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              size: 48,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            const SizedBox(height: 16),
+            Text(
+              name,
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 8),
+            Text(
+              description,
+              style: Theme.of(context).textTheme.bodyMedium,
+              textAlign: TextAlign.center,
             ),
           ],
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                icon,
-                size: 48,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-              const SizedBox(height: 16),
-              Text(
-                name,
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 8),
-              Text(
-                description,
-                style: Theme.of(context).textTheme.bodyMedium,
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
         ),
       ),
     );
