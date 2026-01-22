@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../home/home_screen.dart';
-import '../courses/course_list_screen.dart';
-import '../practice/practice_screen.dart';
-import '../profile/profile_screen.dart';
+import '../../home/home_screen.dart';
+import '../../courses/course_list_screen.dart';
+import '../../practice/practice_screen.dart';
+import '../../profile/profile_screen.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({super.key});
