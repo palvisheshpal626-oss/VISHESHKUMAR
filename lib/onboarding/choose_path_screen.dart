@@ -6,11 +6,135 @@ class ChoosePathScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Choose Path'),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            children: [
+              const SizedBox(height: 40),
+              const Text(
+                '💻',
+                style: TextStyle(fontSize: 64),
+              ),
+              const SizedBox(height: 24),
+              Text(
+                'Choose Your Path',
+                style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 12),
+              Text(
+                'Which programming language would you like to learn?',
+                style: Theme.of(context).textTheme.bodyLarge,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 40),
+              Expanded(
+                child: GridView.count(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 16,
+                  childAspectRatio: 0.85,
+                  children: [
+                    _LanguageCard(
+                      icon: Icons.language,
+                      name: 'Python',
+                      description: 'Great for beginners',
+                      onTap: () => print('Selected: Python'),
+                    ),
+                    _LanguageCard(
+                      icon: Icons.code,
+                      name: 'JavaScript',
+                      description: 'Build web apps',
+                      onTap: () => print('Selected: JavaScript'),
+                    ),
+                    _LanguageCard(
+                      icon: Icons.android,
+                      name: 'Java',
+                      description: 'Enterprise & Android',
+                      onTap: () => print('Selected: Java'),
+                    ),
+                    _LanguageCard(
+                      icon: Icons.speed,
+                      name: 'C++',
+                      description: 'High performance',
+                      onTap: () => print('Selected: C++'),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
-      body: const Center(
-        child: Text('Choose Path Screen'),
+    );
+  }
+}
+
+class _LanguageCard extends StatelessWidget {
+  final IconData icon;
+  final String name;
+  final String description;
+  final VoidCallback onTap;
+
+  const _LanguageCard({
+    required this.icon,
+    required this.name,
+    required this.description,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final cardColor = isDark
+        ? Theme.of(context).cardTheme.color ?? const Color(0xFF1A2332)
+        : Colors.white;
+
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
+        decoration: BoxDecoration(
+          color: cardColor,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(isDark ? 0.3 : 0.1),
+              blurRadius: 8,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                size: 48,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              const SizedBox(height: 16),
+              Text(
+                name,
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                description,
+                style: Theme.of(context).textTheme.bodyMedium,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
