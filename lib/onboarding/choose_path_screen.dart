@@ -1,8 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../core/widgets/bottom_nav.dart';
+import '../core/providers/app_state_provider.dart';
 
 class ChoosePathScreen extends StatelessWidget {
   const ChoosePathScreen({super.key});
+
+  void _selectLanguage(BuildContext context, String language) async {
+    final appState = Provider.of<AppStateProvider>(context, listen: false);
+    await appState.setLanguage(language);
+    
+    if (!context.mounted) return;
+    
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('$language selected! Let\'s start learning!'),
+        duration: const Duration(seconds: 2),
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+    
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => const BottomNav(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,49 +66,25 @@ class ChoosePathScreen extends StatelessWidget {
                       icon: Icons.language,
                       name: 'Python',
                       description: 'Great for beginners',
-                      onTap: () {
-                        Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                            builder: (context) => const BottomNav(),
-                          ),
-                        );
-                      },
+                      onTap: () => _selectLanguage(context, 'Python'),
                     ),
                     _LanguageCard(
                       icon: Icons.code,
                       name: 'JavaScript',
                       description: 'Build web apps',
-                      onTap: () {
-                        Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                            builder: (context) => const BottomNav(),
-                          ),
-                        );
-                      },
+                      onTap: () => _selectLanguage(context, 'JavaScript'),
                     ),
                     _LanguageCard(
                       icon: Icons.android,
                       name: 'Java',
                       description: 'Enterprise & Android',
-                      onTap: () {
-                        Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                            builder: (context) => const BottomNav(),
-                          ),
-                        );
-                      },
+                      onTap: () => _selectLanguage(context, 'Java'),
                     ),
                     _LanguageCard(
                       icon: Icons.speed,
                       name: 'C++',
                       description: 'High performance',
-                      onTap: () {
-                        Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                            builder: (context) => const BottomNav(),
-                          ),
-                        );
-                      },
+                      onTap: () => _selectLanguage(context, 'C++'),
                     ),
                   ],
                 ),
