@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../core/widgets/bottom_nav.dart';
 
 class ChoosePathScreen extends StatelessWidget {
   const ChoosePathScreen({super.key});
@@ -42,25 +43,49 @@ class ChoosePathScreen extends StatelessWidget {
                       icon: Icons.language,
                       name: 'Python',
                       description: 'Great for beginners',
-                      onTap: () => print('Selected: Python'),
+                      onTap: () {
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => const BottomNav(),
+                          ),
+                        );
+                      },
                     ),
                     _LanguageCard(
                       icon: Icons.code,
                       name: 'JavaScript',
                       description: 'Build web apps',
-                      onTap: () => print('Selected: JavaScript'),
+                      onTap: () {
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => const BottomNav(),
+                          ),
+                        );
+                      },
                     ),
                     _LanguageCard(
                       icon: Icons.android,
                       name: 'Java',
                       description: 'Enterprise & Android',
-                      onTap: () => print('Selected: Java'),
+                      onTap: () {
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => const BottomNav(),
+                          ),
+                        );
+                      },
                     ),
                     _LanguageCard(
                       icon: Icons.speed,
                       name: 'C++',
                       description: 'High performance',
-                      onTap: () => print('Selected: C++'),
+                      onTap: () {
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => const BottomNav(),
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
